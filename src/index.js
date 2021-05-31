@@ -80,5 +80,14 @@ export default class PodAdaptiveCardsTestings {
 
     // And finally insert it somewhere in your page:
     document.body.appendChild(renderedCard);
+
+    fetch("https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow")
+      .then((res) => res.json())
+      .then((json) => {
+        const responseElement = document.createElement("div");
+        responseElement.innerHTML = `<p>Response we got:</p>${json}`;
+        document.body.appendChild(responseElement);
+      })
+      .catch((e) => console.log("Fetch failed! CORS issue?"));
   }
 }
