@@ -28,11 +28,7 @@
 
   <body>
     <article
-      class="
-        o-pod-adaptive-cards-testings
-        js-podadaptivecardstestings-mount
-        podadaptivecardstestings
-      "
+      class="js-podadaptivecardstestings-mount"
       data-language="de"
       data-stage="dev"
       data-type="on-dom-loaded"
@@ -47,9 +43,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var elem = document.querySelector(".js-podadaptivecardstestings-mount");
-        var instance = new PodAdaptiveCardsTestings(elem, {
-          ...elem.dataset,
-        });
+        var instance = new PodAdaptiveCardsTestings(elem);
       });
     </script>
   </body>

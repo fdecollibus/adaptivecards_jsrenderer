@@ -9,9 +9,8 @@ import * as AdaptiveCards from "adaptivecards";
 export default class PodAdaptiveCardsTestings {
   // elem is the DOM node where the pod will be atatched on
   // options contains the store and the rest is the data attributes of the pod
-  constructor(elem, { ...rest }) {
+  constructor(elem) {
     this.elem = elem;
-    this.options = rest;
 
     this.init();
   }
@@ -47,6 +46,7 @@ export default class PodAdaptiveCardsTestings {
     // whenever an action is clicked in the card
     adaptiveCard.onExecuteAction = function (action) {
       alert("Ow!");
+      console.log(action);
     };
 
     // For markdown support you need a third-party library
