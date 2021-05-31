@@ -16,71 +16,22 @@ export default class PodAdaptiveCardsTestings {
     this.init();
   }
 
-  init() {
+  async init() {
     this.elem.innerHTML = "<h1>Adaptive Cards Playground</h1>";
 
-    // Author a card
-    // In practice you'll probably get this from a service
-    // see http://adaptivecards.io/samples/ for inspiration
-    var card = {
-      type: "AdaptiveCard",
-      $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
-      version: "1.3",
-      body: [
-        {
-          type: "Container",
-          items: [
-            {
-              type: "TextBlock",
-              text: "Schadenmeldung",
-              wrap: true,
-              size: "Large",
-              weight: "Bolder",
-            },
-            {
-              type: "Container",
-              items: [
-                {
-                  type: "Input.ChoiceSet",
-                  choices: [
-                    {
-                      title: "Diebstahl, EInbruch und Verlust",
-                      value: "Choice 1 - was muss ich da eingeben?",
-                    },
-                    {
-                      title: "Beschädigung und Zerstörung",
-                      value: "Choice 2",
-                    },
-                    {
-                      title: "Sonstiges",
-                    },
-                  ],
-                  placeholder: "Bitte wählen ...",
-                  label: "Wie ist der Schaden entstanden?",
-                  id: "schaden_entstehung",
-                },
-                {
-                  type: "Input.Date",
-                  label: "Wann ist der Schaden entstanden?",
-                  value: "[today]",
-                  isRequired: true,
-                  errorMessage:
-                    "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
-                  id: "schadendatum",
-                },
-                {
-                  type: "TextBlock",
-                  text: "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
-                  wrap: true,
-                  size: "Small",
-                  id: "infotext_schadendatum",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    };
+    let fetchedCardJSON;
+    try {
+      fetchedCardJSON = await (
+        await fetch(
+          "https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow"
+        )
+      ).json();
+    } catch (e) {
+      console.error(
+        "Fetch card failed! CORS issue? Parsing issue? Connectivity issue?",
+        e
+      );
+    }
 
     // Create an AdaptiveCard instance
     var adaptiveCard = new AdaptiveCards.AdaptiveCard();
@@ -108,24 +59,12 @@ export default class PodAdaptiveCardsTestings {
     //     };
 
     // Parse the card payload
-    adaptiveCard.parse(card);
+    adaptiveCard.parse(fetchedCardJSON);
 
     // Render the card to an HTML element:
     var renderedCard = adaptiveCard.render();
 
     // And finally insert it somewhere in your page:
     document.body.appendChild(renderedCard);
-
-    // testBackendConnectivity();
   }
-}
-function testBackendConnectivity() {
-  fetch("https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow")
-    .then((res) => res.json())
-    .then((json) => {
-      const responseElement = document.createElement("div");
-      responseElement.innerHTML = `<p>Response we got:</p>${json}`;
-      document.body.appendChild(responseElement);
-    })
-    .catch((e) => console.log("Fetch failed! CORS issue?"));
 }
