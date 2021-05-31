@@ -59,7 +59,7 @@
     "test": "eslint src/",
     "clean-lib": "rimraf lib",
     "build": "npm run clean-lib && cross-env NODE_ENV=production rollup --config ./rollup.config.js",
-    "release": "npm whoami && npm install && npm shrinkwrap && npm run test && npm run build && npm publish",
+    "release": "npm whoami && npm install && npm shrinkwrap && npm run build && npm publish",
     "start": "npm run copy-podproperties-to-indexhtml && webpack-dev-server",
     "test-jest": "node scripts/test.unit.js --env=jsdom",
     "test-jest-watch": "node scripts/test.unit.js --env=jsdom --watch",
