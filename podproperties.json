@@ -1,0 +1,17 @@
+{
+  "type": "on-dom-loaded",
+  "api": {
+    "dev": "https://www.dev-api.axa-ch.intraxa/YOUR-APP-ID",
+    "acc": "http://acc-api.axa.ch/YOUR-APP-ID",
+    "prod": "http://api.axa.ch/YOUR-APP-ID"
+  },
+  "greeting": {
+    "de": "Guten Morgen",
+    "en": "Good Morning"
+  },
+  "example_prop": "myValue",
+  "another_prop": ["this", "is", "also", "possible"],
+  "nested_prop": {
+    "this is also": "possible"
+  }
+}
