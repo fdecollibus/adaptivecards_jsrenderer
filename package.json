@@ -4,7 +4,8 @@
   "dependencies": {
     "@axa-ch/button": "latest",
     "@axa-ch/patterns-library-polyfill": "latest",
-    "adaptivecards": "^2.9.0"
+    "adaptivecards": "^2.9.0",
+    "markdown-it": "^12.0.6"
   },
   "devDependencies": {
     "@axa-ch/bifrost": "3.0.0",
@@ -76,5 +77,5 @@
   },
   "homepage": "https://github.com/axa-ch/pod-adaptive-cards-testings#readme",
   "name": "@axa-ch/pod-adaptive-cards-testings",
-  "version": "0.0.0"
+  "version": "0.0.1"
 }

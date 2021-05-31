@@ -2,6 +2,8 @@ import "@axa-ch/patterns-library-polyfill";
 import "@axa-ch/button";
 import "./index.scss";
 
+import "./markdown.js";
+
 import * as AdaptiveCards from "adaptivecards";
 
 export default class PodAdaptiveCardsTestings {
@@ -57,6 +59,10 @@ export default class PodAdaptiveCardsTestings {
       // More host config options
     });
 
+    // adaptiveCard.onProcessMarkdown = function (text, result) {
+    //   result.outputHtml = md.render(text);
+    //   result.didProcess = true;
+    // };
     // Set the adaptive card's event handlers. onExecuteAction is invoked
     // whenever an action is clicked in the card
     adaptiveCard.onExecuteAction = function (action) {

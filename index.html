@@ -1,48 +1,57 @@
 <html lang="en">
   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>YOUR TITLE HERE</title>
-      
-      <link rel="stylesheet" href="__mock/normalize.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>YOUR TITLE HERE</title>
 
-      <style>
+    <link rel="stylesheet" href="__mock/normalize.css" />
 
-          body {
-              margin: 0;
-              padding: 0;
-          }
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
-          *,
-          *:before,
-          *:after {
-            box-sizing: border-box;
-          }
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+    </style>
 
-      </style>
+    <!-- <script
+      type="text/javascript"
+      src="https://unpkg.com/markdown-it/dist/markdown-it.min.js"
+    ></script> -->
   </head>
 
   <body>
-
-      <article
-      class="o-pod-adaptive-cards-testings js-podadaptivecardstestings-mount podadaptivecardstestings"
+    <article
+      class="
+        o-pod-adaptive-cards-testings
+        js-podadaptivecardstestings-mount
+        podadaptivecardstestings
+      "
       data-language="de"
       data-stage="dev"
       data-type="on-dom-loaded"
       data-api="https://www.dev-api.axa-ch.intraxa/YOUR-APP-ID"
       data-greeting="Guten Morgen"
       data-example_prop="myValue"
-      data-another_prop="[&quot;this&quot;,&quot;is&quot;,&quot;also&quot;,&quot;possible&quot;]"
-      data-nested_prop="{&quot;this is also&quot;:&quot;possible&quot;}">
-    </article>
+      data-another_prop='["this","is","also","possible"]'
+      data-nested_prop='{"this is also":"possible"}'
+    ></article>
 
-      <!-- plugin initialization -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var elem = document.querySelector('.js-podadaptivecardstestings-mount');
-        var instance = new PodAdaptiveCardsTestings(elem, { ...elem.dataset, store: window.store });
-    });
-</script>
+    <!-- plugin initialization -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elem = document.querySelector(".js-podadaptivecardstestings-mount");
+        var instance = new PodAdaptiveCardsTestings(elem, {
+          ...elem.dataset,
+          store: window.store,
+        });
+      });
+    </script>
   </body>
 </html>
