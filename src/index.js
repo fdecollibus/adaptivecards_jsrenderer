@@ -24,27 +24,60 @@ export default class PodAdaptiveCardsTestings {
     // see http://adaptivecards.io/samples/ for inspiration
     var card = {
       type: "AdaptiveCard",
-      version: "1.0",
+      $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
+      version: "1.3",
       body: [
         {
-          type: "Image",
-          url: "http://adaptivecards.io/content/adaptive-card-50.png",
-        },
-        {
-          type: "TextBlock",
-          text: "Hello **Adaptive Cards!**",
-        },
-      ],
-      actions: [
-        {
-          type: "Action.OpenUrl",
-          title: "Learn more",
-          url: "http://adaptivecards.io",
-        },
-        {
-          type: "Action.OpenUrl",
-          title: "GitHub",
-          url: "http://github.com/Microsoft/AdaptiveCards",
+          type: "Container",
+          items: [
+            {
+              type: "TextBlock",
+              text: "Schadenmeldung",
+              wrap: true,
+              size: "Large",
+              weight: "Bolder",
+            },
+            {
+              type: "Container",
+              items: [
+                {
+                  type: "Input.ChoiceSet",
+                  choices: [
+                    {
+                      title: "Diebstahl, EInbruch und Verlust",
+                      value: "Choice 1 - was muss ich da eingeben?",
+                    },
+                    {
+                      title: "Beschädigung und Zerstörung",
+                      value: "Choice 2",
+                    },
+                    {
+                      title: "Sonstiges",
+                    },
+                  ],
+                  placeholder: "Bitte wählen ...",
+                  label: "Wie ist der Schaden entstanden?",
+                  id: "schaden_entstehung",
+                },
+                {
+                  type: "Input.Date",
+                  label: "Wann ist der Schaden entstanden?",
+                  value: "[today]",
+                  isRequired: true,
+                  errorMessage:
+                    "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
+                  id: "schadendatum",
+                },
+                {
+                  type: "TextBlock",
+                  text: "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
+                  wrap: true,
+                  size: "Small",
+                  id: "infotext_schadendatum",
+                },
+              ],
+            },
+          ],
         },
       ],
     };
@@ -59,10 +92,6 @@ export default class PodAdaptiveCardsTestings {
       // More host config options
     });
 
-    // adaptiveCard.onProcessMarkdown = function (text, result) {
-    //   result.outputHtml = md.render(text);
-    //   result.didProcess = true;
-    // };
     // Set the adaptive card's event handlers. onExecuteAction is invoked
     // whenever an action is clicked in the card
     adaptiveCard.onExecuteAction = function (action) {
@@ -87,13 +116,16 @@ export default class PodAdaptiveCardsTestings {
     // And finally insert it somewhere in your page:
     document.body.appendChild(renderedCard);
 
-    fetch("https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow")
-      .then((res) => res.json())
-      .then((json) => {
-        const responseElement = document.createElement("div");
-        responseElement.innerHTML = `<p>Response we got:</p>${json}`;
-        document.body.appendChild(responseElement);
-      })
-      .catch((e) => console.log("Fetch failed! CORS issue?"));
+    // testBackendConnectivity();
   }
+}
+function testBackendConnectivity() {
+  fetch("https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow")
+    .then((res) => res.json())
+    .then((json) => {
+      const responseElement = document.createElement("div");
+      responseElement.innerHTML = `<p>Response we got:</p>${json}`;
+      document.body.appendChild(responseElement);
+    })
+    .catch((e) => console.log("Fetch failed! CORS issue?"));
 }
