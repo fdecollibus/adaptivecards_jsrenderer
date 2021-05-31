@@ -1,9 +1,10 @@
 {
-  "description": "TBD",
+  "description": "This project was used for a hackaton about adaptive cards.",
   "main": "lib/index.js",
   "dependencies": {
     "@axa-ch/button": "latest",
-    "@axa-ch/patterns-library-polyfill": "latest"
+    "@axa-ch/patterns-library-polyfill": "latest",
+    "adaptivecards": "^2.9.0"
   },
   "devDependencies": {
     "@axa-ch/bifrost": "3.0.0",
