@@ -15,19 +15,19 @@ export default class PodAdaptiveCardsTestings {
 
     this.elem.innerHTML = "<h1>Adaptive Cards Playground</h1>";
 
-    let fetchedCardJSON;
-    try {
-      fetchedCardJSON = await (
-        await fetch(
-          "https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow"
-        )
-      ).json();
-    } catch (e) {
-      console.error(
-        "Fetch card failed! CORS issue? Parsing issue? Connectivity issue?",
-        e
-      );
-    }
+    // let fetchedCardJSON;
+    // try {
+    //   fetchedCardJSON = await (
+    //     await fetch(
+    //       "https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow"
+    //     )
+    //   ).json();
+    // } catch (e) {
+    //   console.error(
+    //     "Fetch card failed! CORS issue? Parsing issue? Connectivity issue?",
+    //     e
+    //   );
+    // }
 
     // Create an AdaptiveCard instance
     var adaptiveCard = new AdaptiveCards.AdaptiveCard();
@@ -55,7 +55,17 @@ export default class PodAdaptiveCardsTestings {
     //     };
 
     // Parse the card payload
-    adaptiveCard.parse(fetchedCardJSON);
+    adaptiveCard.parse({
+      type: "AdaptiveCard",
+      version: "1.0",
+      body: [
+        {
+          type: "ProgressBar",
+          title: "This is a progress bar",
+          value: 100,
+        },
+      ],
+    });
 
     // Render the card to an HTML element:
     var renderedCard = adaptiveCard.render();

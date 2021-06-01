@@ -82,6 +82,10 @@ export class ProgressBar extends AC.CardElement {
 
     element.append(this._titleElement, progressBarElement);
 
+    const button = document.createElement("axa-button");
+    button.innerText = "hello world";
+    element.appendChild(button);
+
     return element;
   }
 
@@ -95,10 +99,11 @@ export class ProgressBar extends AC.CardElement {
     if (this.renderedElement) {
       if (this.title) {
         if (this._titleElement) this._titleElement.style.display = "none";
-      } else {
-        if (this._titleElement)
-          this._titleElement.style.removeProperty("display");
       }
+      // else {
+      //   if (this._titleElement)
+      //     this._titleElement.style.removeProperty("display");
+      // }
 
       this._leftBarElement.style.flex = "1 1 " + this.value + "%";
       this._rightBarElement.style.flex = "1 1 " + (100 - this.value) + "%";

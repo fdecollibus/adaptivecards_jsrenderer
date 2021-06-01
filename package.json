@@ -21,7 +21,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@axa-ch/button": "^6.0.11",
+    "@axa-ch/button": "^6.0.18",
     "@axa-ch/button-link": "^5.0.12",
     "@axa-ch/checkbox": "^5.1.10",
     "@axa-ch/heading": "^3.1.7",
