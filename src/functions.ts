@@ -1,5 +1,4 @@
-import cx from 'classnames';
-import { ClassDictionary } from 'classnames/types';
+import cx from "classnames";
 
 /**
  * Functions
@@ -14,7 +13,8 @@ import { ClassDictionary } from 'classnames/types';
  *
  * https://www.csgpro.com/blog/2016/08/a-bad-date-with-internet-explorer-11-trouble-with-new-unicode-characters-in-javascript-date-strings/
  */
-export const sanitizeLocalDate = (localDate: string): string => localDate.replace(/[^0-9\.\/-]/g, '');
+export const sanitizeLocalDate = (localDate: string): string =>
+  localDate.replace(/[^0-9\.\/-]/g, "");
 
 /**
  * if no time and timezone specified, add T00:00:00, so that Date.parse() treats this string as local date (instead of UTC)
@@ -28,7 +28,7 @@ export const addTimeToDateString = (date: string) => {
   let formattedDate = date;
   // if matches exactly the pattern 2020-05-20 add T00:00:00 to treat date as local (and not UTC)
   if (formattedDate?.match(/^\d{4}-\d{2}-\d{2}$/)) {
-    formattedDate = formattedDate + 'T00:00:00';
+    formattedDate = formattedDate + "T00:00:00";
   }
   return formattedDate;
 };
@@ -42,7 +42,7 @@ export const addTimeToDateString = (date: string) => {
  */
 export const formatDate = (dateString: string | undefined) => {
   if (!dateString) {
-    return ''; // better then "Invalid Date" if dateString would be is empty string
+    return ""; // better then "Invalid Date" if dateString would be is empty string
   }
 
   // dateString on input HAS to begin in YYYY-MM-DD format and may contain minutes/timezone: see function doc block
@@ -64,17 +64,17 @@ export const formatDate = (dateString: string | undefined) => {
   // otherwise contains timezone, so process with Date to convert to 'Europe/Zurich' TZ (example: contract sign date)
 
   const date = new Date(dateString);
-  const locale = 'de-CH';
+  const locale = "de-CH";
 
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
   const options = {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    timeZone: 'Europe/Zurich',
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    timeZone: "Europe/Zurich",
   };
 
-  let result = '';
+  let result = "";
   try {
     result = date.toLocaleDateString(locale, options);
   } catch (e) {
@@ -82,9 +82,14 @@ export const formatDate = (dateString: string | undefined) => {
     const OFFSET_EUROPE_ZURICH_TO_UTC = 2; // offset to UTC -> do we need to handle DST?
     // create new local date with time from Europe/Zurich
     result = new Date(
-      date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours() + OFFSET_EUROPE_ZURICH_TO_UTC,
-      date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds(),
-    ).toLocaleDateString(locale, omitKey('timeZone', options));
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      date.getUTCHours() + OFFSET_EUROPE_ZURICH_TO_UTC,
+      date.getUTCMinutes(),
+      date.getUTCSeconds(),
+      date.getUTCMilliseconds()
+    ).toLocaleDateString(locale, omitKey("timeZone", options));
   }
 
   return sanitizeLocalDate(result);
@@ -99,20 +104,23 @@ export const formatDate = (dateString: string | undefined) => {
  */
 export const formatCurrency = (
   value: number | null | string | undefined,
-  currency: string = 'CHF',
+  currency: string = "CHF",
   fractionDigits: number = 2,
-  thousands: string = '’',
-  escape: string = '-',
+  thousands: string = "’",
+  escape: string = "-"
 ) => {
   let amount = value;
   if (amount === undefined || amount === null) {
     return escape; // better then "Invalid Date" if apiDate would be is empty string
   }
-  if (typeof amount === 'string') {
+  if (typeof amount === "string") {
     amount = parseFloat(amount);
     if (isNaN(amount)) return escape;
   }
-  return `${currency} ${amount.toFixed(fractionDigits).toString().replace(/\B(?=(\d{3})+(?!\d))/g, thousands)}`;
+  return `${currency} ${amount
+    .toFixed(fractionDigits)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, thousands)}`;
 };
 
 /**
@@ -120,19 +128,25 @@ export const formatCurrency = (
  */
 export const formatCurrencyNoZeroCents = (
   value: number | null | string | undefined,
-  currency: string = 'CHF',
+  currency: string = "CHF",
   fractionDigits: number = 2,
-  thousands: string = '’',
-  escape: string = '-',
+  thousands: string = "’",
+  escape: string = "-"
 ) => {
-  return formatCurrency(value, currency, fractionDigits, thousands, escape).replace(/\.00$/, '');
+  return formatCurrency(
+    value,
+    currency,
+    fractionDigits,
+    thousands,
+    escape
+  ).replace(/\.00$/, "");
 };
 
 /** input values is decimal number e.g. 0.55 and output from fn is 55% */
 export const formatPercentage = (
   value: number | null,
   decimals: number = 0,
-  escape: string = '-',
+  escape: string = "-"
 ) => {
   if (value === null || value === undefined) {
     return escape;
@@ -149,7 +163,14 @@ export const formatPercentage = (
  * @link https://www.w3schools.com/js/js_dates.asp
  * @link https://stackoverflow.com/questions/948532/how-do-you-convert-a-javascript-date-to-utc
  */
-export const isoDate = (year: number, month: number, day: number, hour: number = 0, minute: number = 0, second: number = 0) => {
+export const isoDate = (
+  year: number,
+  month: number,
+  day: number,
+  hour: number = 0,
+  minute: number = 0,
+  second: number = 0
+) => {
   return new Date(year, month - 1, day, hour, minute, second).toISOString();
 };
 
@@ -160,13 +181,13 @@ export const isoDate = (year: number, month: number, day: number, hour: number =
  */
 export const YYYYMMDDDate = (dateStr: string) => {
   const d = new Date(addTimeToDateString(dateStr));
-  let month = '' + (d.getMonth() + 1);
-  let day = '' + d.getDate();
+  let month = "" + (d.getMonth() + 1);
+  let day = "" + d.getDate();
   const year = d.getFullYear();
 
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-  return [year, month, day].join('-');
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+  return [year, month, day].join("-");
 };
 
 /**
@@ -179,20 +200,29 @@ export const exhaustiveCheck = (param: never) => {
   // silently ignore
 };
 
-export const getQueryParamsString = (params: Record<string, string | number | null | undefined>) => { // don't allow object value
+export const getQueryParamsString = (
+  params: Record<string, string | number | null | undefined>
+) => {
+  // don't allow object value
   const query = Object.keys(params)
-    .filter(k => !!params[k])
-    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k] as string | number)}`)
-    .join('&');
-  return query.length > 0 ? `?${query}` : '';
+    .filter((k) => !!params[k])
+    .map(
+      (k) =>
+        `${encodeURIComponent(k)}=${encodeURIComponent(
+          params[k] as string | number
+        )}`
+    )
+    .join("&");
+  return query.length > 0 ? `?${query}` : "";
 };
 
-export const generateRandomKey = () => Math.floor((Math.random() * 100000000) + 1).toString();
+export const generateRandomKey = () =>
+  Math.floor(Math.random() * 100000000 + 1).toString();
 
 /**
  * Returns true if `process.env.NODE_ENV !== 'development'`
  */
-export const isProductionBuild = () => process.env.NODE_ENV !== 'development';
+export const isProductionBuild = () => process.env.NODE_ENV !== "development";
 
 /**
  * Scrolls viewport to the given `elementId`
@@ -204,52 +234,53 @@ export const scrollToElementId = (elementId: string) => {
 
   if (!targetElement) {
     if (!isProductionBuild()) {
-      console.error('scrollToElementId() target element not found: #' + elementId); // tslint:disable-line:no-console
+      console.error(
+        "scrollToElementId() target element not found: #" + elementId
+      ); // tslint:disable-line:no-console
     }
     return;
   }
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
-  targetElement.scrollIntoView({ behavior: 'smooth' });
+  targetElement.scrollIntoView({ behavior: "smooth" });
 };
 
 /**
  * function returns translation key as string for translateText fn.
  * used for field validations in Forms
  */
-export const getValidationMessageKey = (errorMsgKey: string) => (
-  `kundenportal.api.ValidationErrMsg.${errorMsgKey}.text.label`
-);
+export const getValidationMessageKey = (errorMsgKey: string) =>
+  `kundenportal.api.ValidationErrMsg.${errorMsgKey}.text.label`;
 
 /**
  * ref to myaxa-web: GrefRefnrFilter
  * purpose: format accessContractNo
  */
 export const formatAccessContractNo = (accessContractNo?: number) => {
-  return !accessContractNo ? '-' : accessContractNo.toString().replace(/([0-9]{1,3})([0-9]{3})([0-9]{3})/, '$1.$2.$3');
+  return !accessContractNo
+    ? "-"
+    : accessContractNo
+        .toString()
+        .replace(/([0-9]{1,3})([0-9]{3})([0-9]{3})/, "$1.$2.$3");
 };
 
 /** if bifrostConfig is available in window object, we are sure that app is running as POD */
 export const isPOD = (): boolean => !!(window as any).bifrostConfig;
 
 /** prefix string. if string is already prefixed or empty string, return unchanged string */
-export const prefixString = (text: string, prefix: string): string => (
-  (text.startsWith(prefix) || text === '')
-    ? text
-    : `${prefix}${text}`
-);
+export const prefixString = (text: string, prefix: string): string =>
+  text.startsWith(prefix) || text === "" ? text : `${prefix}${text}`;
 
-type ClassValue = string | ClassDictionary | undefined | null;
+type ClassValue = string | undefined | null;
 
-const CLASSNAME_PREFIX = 'myaxapod__';
+const CLASSNAME_PREFIX = "myaxapod__";
 
 /** this is required for every class */
-export const prefixClass = (...classes: ClassValue[]): string => (
+export const prefixClass = (...classes: ClassValue[]): string =>
   cx(classes)
-    .split(' ')
-    .map(classname => prefixString(classname, CLASSNAME_PREFIX))
-    .join(' ')
-);
+    .split(" ")
+    .map((classname) => prefixString(classname, CLASSNAME_PREFIX))
+    .join(" ");
 
 /**
  * Deep merges target object with source object; does not mutate target object
@@ -262,15 +293,24 @@ export const prefixClass = (...classes: ClassValue[]): string => (
  * @link https://jonlabelle.com/snippets/view/javascript/recursively-merge-two-or-more-objects-in-javascript
  * @link https://stackoverflow.com/a/40294058
  */
-export const deepMerge = <T extends Record<string, any>, S extends Record<string, any>>(target: T, source: S): T & S => {
+export const deepMerge = <
+  T extends Record<string, any>,
+  S extends Record<string, any>
+>(
+  target: T,
+  source: S
+): T & S => {
   const result = { ...target };
   for (const key in source) {
     if (Object.prototype.hasOwnProperty.call(source, key)) {
-      if (typeof source[key] === 'object' && source[key] !== null) {
+      if (typeof source[key] === "object" && source[key] !== null) {
         if (Array.isArray(source[key])) {
           result[key] = source[key].slice(0);
         } else if ((source[key] as any) instanceof RegExp) {
-          result[key] = new RegExp(source[key].source, source[key].flags) as any;
+          result[key] = new RegExp(
+            source[key].source,
+            source[key].flags
+          ) as any;
         } else if ((source[key] as any) instanceof Date) {
           result[key] = new Date(source[key]) as any;
         } else {
@@ -291,9 +331,10 @@ export const deepMerge = <T extends Record<string, any>, S extends Record<string
  *
  * @link https://levelup.gitconnected.com/omit-is-being-removed-in-lodash-5-c1db1de61eaf
  */
-export const omitKey
-  = <T, K extends keyof T>(keyToOmit: K, { [keyToOmit]: _, ...omittedKeyObj }: T = {} as T): Omit<T, K> =>
-  omittedKeyObj;
+export const omitKey = <T, K extends keyof T>(
+  keyToOmit: K,
+  { [keyToOmit]: _, ...omittedKeyObj }: T = {} as T
+): Omit<T, K> => omittedKeyObj;
 
 /**
  * ES6 native alternative to _.isEmpty
@@ -318,7 +359,8 @@ export const uniq = <T = number | string>(arr: T[]): T[] => [...new Set(arr)];
 /**
  * Native alternative to _.capitalize
  */
-export const capitalize = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+export const capitalize = (str: string): string =>
+  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
 /**
  * Object.fromEntries ponyfill for our beloved IE11
@@ -327,14 +369,13 @@ export const capitalize = (str: string): string => str.charAt(0).toUpperCase() +
  *
  * @link https://github.com/feross/fromentries/blob/master/index.js
  */
-export const objectFromEntries = <T = any>(entries: Iterable<readonly [string, T]>): { [k: string]: T } => {
-  return [...entries].reduce(
-    (obj, [key, val]) => {
-      obj[key] = val;
-      return obj;
-    },
-    {} as { [k: string]: T },
-  );
+export const objectFromEntries = <T = any>(
+  entries: Iterable<readonly [string, T]>
+): { [k: string]: T } => {
+  return [...entries].reduce((obj, [key, val]) => {
+    obj[key] = val;
+    return obj;
+  }, {} as { [k: string]: T });
 };
 
 export const removeItemFromArray = <T>(array: T[], valueToRemove: T) => {
