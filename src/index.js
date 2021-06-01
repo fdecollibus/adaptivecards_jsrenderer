@@ -65,6 +65,6 @@ export default class PodAdaptiveCardsTestings {
     var renderedCard = adaptiveCard.render();
 
     // And finally insert it somewhere in your page:
-    document.body.appendChild(renderedCard);
+    this.elem.appendChild(renderedCard);
   }
 }
