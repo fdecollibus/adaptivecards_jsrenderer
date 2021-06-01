@@ -1,0 +1,56 @@
+@import '../../styles/colors';
+@import '../../styles/typo';
+@import "./LabelValue";
+
+.LVItem {
+  @include mobile() {
+    margin-bottom: $lv-vertical-space-mobile;
+  }
+  @include desktop() {
+    margin-bottom: $lv-vertical-space-desktop;
+  }
+
+  .LabelValue--columns > & {
+    width: 50%; // parent is flex
+    padding-right: 1.5rem;
+  }
+
+  .LabelValue--rows > & {
+    @include mobile() {
+      display: flex;
+      flex-direction: column;
+      min-height: 35px;
+      align-items: baseline;
+
+      // the Label and Value when 'rows' mode - different width on mobile/desktop
+      & > * {
+        width: 100%;
+      }
+    }
+    @include desktop() {
+      display: flex;
+      flex-direction: row;
+      min-height: 35px;
+      align-items: baseline;
+
+      // the Label and Value when 'rows' mode - different width on mobile/desktop
+      & > * {
+        width: 50%;
+      }
+    }
+  }
+
+  &__Label {
+    @include text(t3, semibold); // weight medium/600 to match labels of PL's form inputs
+    padding-right: 15px;
+
+    @include respond-up-md() {
+      padding-right: 30px;
+    }
+  }
+
+  &__Value {
+    margin: 0; // overwrite <dd> styles
+    @include text(t3);
+  }
+}

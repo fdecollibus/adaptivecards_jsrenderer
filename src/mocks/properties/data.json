@@ -1,0 +1,52 @@
+{
+  "list": [
+    {
+      "uuid": "a2e0dbc5-8edf-4cae-8b3d-cac98f718321",
+      "publknDokId": 122,
+      "publknDokRefNr": "8006063-11.13",
+      "publknDokTypCdoms": 1,
+      "dokTypCdoms": 86,
+      "publknDat": null,
+      "rehtCdu": null,
+      "geschBerCdecm": 1,
+      "gueltigAb": "2013-11-01",
+      "gueltigBis": "2019-03-31",
+      "infoVtrauktStufeCdu": 1,
+      "nameKomplErstr": "",
+      "publknDokVwendgCdoms": null,
+      "publknDokPartTypCdches": [],
+      "vvbAusgbVsn": "082010",
+      "vprodCdus": [
+        93000,
+        94000,
+        930001
+      ],
+      "dokArchvtAm": null,
+      "prodFamCdmktgs": [
+        9
+      ],
+      "publknDokZgrifCd": "aadsl",
+      "spraCdiPublkn": "de",
+      "mimeTypBez": "application/pdf",
+      "mimeStypBez": "pdf",
+      "url": "https://www.dev.axa-ch.intraxa/doc/aadsl",
+      "kzPublknDokVorhd": true,
+      "fileNameKompl": "HAHRO_AVB_08.2010_DE.pdf",
+      "mutnDat": "2019-10-31",
+      "suchErgnsDokInfo": "WGR 714 De Ausgabe 08.2010   Allgemeine Vertragsbedingungen (AVB)/ BOX OPTIMA ... Hausrat 8006063 – 11.132 Ihre Hausratversicherung im Überblick ... Folgende Gefahren und Schäden können z ... ",
+      "suchErgnsRelvzBwrtg": 6.110746383666992,
+      "fileSize": 85426,
+      "dokTypCdomsBez": "REISEVERSICHERUNG INTERTOURS",
+      "geschBerCdmktgs": null,
+      "kdLVhltsCdches": null,
+      "kdSegCdches": null,
+      "publknDokAusgbMonat": null,
+      "vkThemaCdmktgs": null,
+      "wshftBerCdmktgs": null,
+      "elvAvbBez": null,
+      "elvProdlCdls": null,
+      "elvTfGnrtnCdil": null,
+      "vtrbKoopPartCdches": null
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+@import '../../styles/grid';
+
+.Col {
+  display: block;
+}
+
+@include make-grid-columns();

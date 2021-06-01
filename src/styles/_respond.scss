@@ -1,0 +1,77 @@
+@import '~@axa-ch/materials/styles/30-layout';
+@import '~@axa-ch/materials/styles/variables';
+
+
+@mixin respond-down-xs() {
+  @include breakpoint($mediaquery-xs) {
+    @content;
+  }
+}
+
+@mixin respond-down-sm() {
+  @include breakpoint(0 ($breakpoint-sm - 1px)) {
+    @content;
+  }
+}
+
+@mixin respond-down-md() {
+  @include breakpoint(0 ($breakpoint-md - 1px)) {
+    @content;
+  }
+}
+
+// ---
+
+@mixin respond-up-xs() {
+  @include breakpoint($mediaquery-xs-up) {
+    @content;
+  }
+}
+
+@mixin respond-up-sm() {
+  @include breakpoint($mediaquery-sm-up) {
+    @content;
+  }
+}
+
+@mixin respond-up-md() {
+  @include breakpoint($mediaquery-md-up) {
+    @content;
+  }
+}
+
+@mixin respond-up-xl() {
+  @include breakpoint($mediaquery-xl-up) {
+    @content;
+  }
+}
+
+// ---
+
+@mixin respond-only-md() {
+  @include breakpoint($mediaquery-md) {
+    @content;
+  }
+}
+
+@mixin respond-only-sm() {
+  @include breakpoint($mediaquery-sm) {
+    @content;
+  }
+}
+
+// ---
+
+// alias for: respond-down-sm
+@mixin mobile() {
+  @include respond-down-sm {
+    @content;
+  }
+}
+
+// alias for: respond-up-sm
+@mixin desktop() {
+  @include respond-up-sm {
+    @content;
+  }
+}

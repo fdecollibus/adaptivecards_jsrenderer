@@ -1,0 +1,45 @@
+@import '~@axa-ch/materials/styles/typography';
+
+$primary-font: $font-family-primary;
+$secondary-font: $font-family-secondary;
+
+// This mixin should bring back the default browser typography for P, UL, OL, etc...
+// So that the html content looks typographically correct.
+// (On global level all typography gets reset in _reboot-axach.scss)
+@mixin typography() {
+  p, ul, ol {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  ul {
+    padding-left: 2em;
+  }
+  b, strong {
+    font-weight: 600;
+  }
+  i {
+    font-style: italic;
+  }
+}
+
+/**
+  * @deprecated
+  *
+  * Do not use this mixin in new code.
+  * it was created to keep old text mixin with option small: (13, 15, 0.02em).
+  */
+@mixin text-small($text-format: null) {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  line-height: 15px;
+  font-family: $primary-font;
+
+  @if $text-format == bold {
+    font-weight: bold;
+  } @else if $text-format == semibold {
+    font-weight: 600;
+  }
+  @if ($text-format == italic) {
+    font-style: italic;
+  }
+}

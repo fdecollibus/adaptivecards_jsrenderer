@@ -1,0 +1,81 @@
+@import '../../styles/respond';
+@import '../../styles/typo';
+
+.ErrorMessage {
+  width: 100%;
+  padding: 4rem 1rem;
+}
+
+.ErrorMessage--tile {
+  color: white;
+  padding: 0;
+}
+
+.ErrorMessage__Heading {
+  margin: 0 !important; // override Heading's own style
+  text-align: center;
+}
+
+.ErrorMessage__errorCode {
+  @include text(t3, semibold);
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.ErrorMessage__message {
+  @include text(t3, semibold);
+  @include desktop {
+    text-align: center; // overriden below
+  }
+}
+
+.ErrorMessage__cols {
+  @include desktop {
+    padding-top: 2rem;
+  }
+}
+
+.ErrorMessage__children {
+  padding-top: 2rem;
+  text-align: center;
+}
+
+// if Robot illustration is present, then display it on the right of the message
+.ErrorMessage--illustration {
+
+  .ErrorMessage__cols {
+    @include desktop {
+      max-width: 520px;
+      margin: 0 auto;
+      display: flex;
+    }
+  }
+
+  .ErrorMessage__illustration {
+
+    @include mobile {
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+
+      svg {
+        // dimension is expected to be set in the svg. IF not, this is fallback
+        max-width: 150px;
+      }
+    }
+    @include desktop {
+      margin-right: 42px;
+      flex: 0 0 auto;
+
+      svg {
+        // dimension is expected to be set in the svg. IF not, this is fallback
+        min-width: 100px;
+      }
+    }
+  }
+
+  .ErrorMessage__message {
+    text-align: left;
+  }
+
+}

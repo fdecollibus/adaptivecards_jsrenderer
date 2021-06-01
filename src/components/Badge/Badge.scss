@@ -1,0 +1,78 @@
+@import '../../styles/colors';
+@import '../../styles/respond';
+
+// small
+$badge-small: (
+  font-size: 12px,
+  line-height: 18px,
+  font-weight: 700,
+  min-size: 18px,
+  padding: 3px,
+);
+
+$badge-large: (
+  font-size: 16px,
+  line-height: 24px,
+  font-weight: 700,
+  min-size: 30px,
+  padding: 7px,
+);
+
+$badge-color: $color-prim-white;
+$badge-bg-color: $color-burnt-sienna;
+$badge-border-radius: 10rem;
+
+@mixin badgeGeneralStyles($large: false) {
+  $map: $badge-small;
+  @if $large {
+    $map: $badge-large;
+  }
+
+  // background
+  display: inline-block;
+  background-color: $badge-bg-color;
+  padding-right: map-get($map, padding);
+  padding-left: map-get($map, padding);
+  border-radius: $badge-border-radius;
+  vertical-align: text-top;
+  min-width: map-get($map, min-size);
+  min-height: map-get($map, min-size);
+  // text
+  font-size: map-get($map, font-size);
+  font-weight: map-get($map, font-weight);
+  line-height: map-get($map, line-height);
+  color: $badge-color;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.Badge--small:not(:empty) {
+  @include badgeGeneralStyles();
+}
+
+.Badge--large:not(:empty) {
+  @include badgeGeneralStyles(true);
+}
+
+.Badge:not(:empty).Badge--empty-on-mobile {
+  display: none;
+
+  @include desktop {
+    display: inline-block;
+  }
+}
+
+.Badge:not(:empty) + .Badge--mobile {
+
+  @include badgeGeneralStyles();
+  width: map-get($badge-small, min-size);
+  height: map-get($badge-small, min-size);
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.Badge--clickable {
+  cursor: pointer;
+}

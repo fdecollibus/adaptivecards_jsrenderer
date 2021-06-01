@@ -1,0 +1,79 @@
+@import '../../styles/colors';
+@import '../../styles/respond';
+@import '../../styles/typo';
+
+$closeIconSizeMobile: 32px;
+$closeIconSize: 36px;
+
+.TileHeader {
+  padding-top: 19px;
+
+  @include desktop {
+    padding-top: 45px;
+  }
+}
+
+.TileHeaderMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; // close button on top
+  margin-top: 7px;
+  margin-bottom: 25px;
+
+  @include mobile() {
+    flex-wrap: wrap; // so that the button wraps to next line
+  }
+
+}
+
+.TileHeaderMain__titles {
+  flex: 1;
+}
+
+.TileHeaderMain__title {
+  .Badge {
+    font-family: $primary-font;
+    font-size: 14px;
+  }
+
+  @include desktop {
+    margin-top: 0;
+  }
+}
+
+.TileHeaderMain__subTitle {
+  font-size: 14px;
+}
+
+.TileHeaderMain__closeIconCol {
+  flex: 0;
+  margin-left: 20px;
+
+  .Icon {
+    color: $color-axa-blue;
+
+    @include mobile() {
+      width: $closeIconSizeMobile;
+      height: $closeIconSizeMobile;
+    }
+    @include desktop {
+      width: $closeIconSize;
+      height: $closeIconSize;
+    }
+  }
+
+}
+
+.TileHeaderMain__button {
+  flex: 0 1 auto; // never use shortcut definition (flex: 0;)
+
+  @include mobile {
+    margin-top: 15px;
+
+    // so that the button is on next line: below the titles and close button
+    order: 100;
+    width: 100%;
+    flex-basis: auto;
+  }
+
+}

@@ -1,0 +1,1 @@
+export { InlineSvg } from './InlineSvg';

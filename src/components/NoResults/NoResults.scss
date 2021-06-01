@@ -1,0 +1,34 @@
+@import '../../styles/respond';
+@import '../../styles/typo';
+
+.NoResults {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  @include mobile() {
+    flex-direction: column;
+  }
+
+  .NoResults__texts {
+    text-align: center;
+  }
+
+  .NoResults__illustration {
+    width: 146px;
+    height: 108px;
+    padding-right: 30px;
+  }
+
+  .NoResults__message {
+    @include headline(h5, primary);
+  }
+
+  &--withImg {
+    .NoResults__texts {
+      text-align: left;
+    }
+  }
+}

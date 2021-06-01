@@ -1,0 +1,300 @@
+{
+  "partnerNumber": 123456,
+  "offerGroups": [
+    {
+      "offers": [
+        {
+          "uuid": "6f1049fd-010f-4566-979c-3f584e2d5f181",
+          "businessCd": "87001",
+          "productName": "Motorfahrzeug",
+          "descriptionOfferGroup": "ZH 123456",
+          "iconId": 2,
+          "description": "Variante #1",
+          "contractFrom": "2021-02-17T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-02-17T23:00:00.000Z",
+          "offerTo": "2021-02-17T23:00:00.000Z",
+          "premium": {
+            "currencyCode": "CHF",
+            "amount": 1301.55
+          },
+          "state": {
+            "key": "0",
+            "value": "Offen"
+          },
+          "recommendation": true,
+          "offerDocument": {
+            "title": "Offerte",
+            "ecmDocId": "7804e53a-eb1b-5f40-9d2a-2abb9b2cfc08",
+            "documentTyp": {
+              "key": "1002",
+              "value": "Offerte"
+            }
+          },
+          "avbDocuments": [
+            {
+              "title": "Title avb doc 1",
+              "pubDocId": 123
+            },
+            {
+              "title": "Title acb doc 2",
+              "pubDocId": 456
+            },
+            {
+              "title": null,
+              "pubDocId": null
+            }
+          ]
+        },
+        {
+          "uuid": "6f1049fd-010f-4566-979c-3f584e2d5f182",
+          "businessCd": "87001",
+          "productName": "Motorfahrzeug",
+          "descriptionOfferGroup": "ZH 123456",
+          "iconId": 2,
+          "description": "Variante #2",
+          "contractFrom": "2021-02-17T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-02-17T23:00:00.000Z",
+          "offerTo": "2021-02-17T23:00:00.000Z",
+          "premium": {
+            "currencyCode": "CHF",
+            "amount": 31.55
+          },
+          "state": {
+            "key": "0",
+            "value": "offen"
+          },
+          "recommendation": false,
+          "offerDocument": {
+            "title": "Title",
+            "ecmDocId": "7804e53a-eb1b-5f40-9d2a-2abb9b2cfc08",
+            "documentTyp": {
+              "key": "1002",
+              "value": "Offerte"
+            }
+          },
+          "avbDocuments": [
+            {
+              "title": "Title",
+              "pubDocId": 123
+            }
+          ]
+        },
+        {
+          "uuid": "6f1049fd-010f-4566-979c-3f584e2d5f183",
+          "businessCd": "87001",
+          "productName": "Motorfahrzeug",
+          "descriptionOfferGroup": "ZH 123456",
+          "description": "Variante #3",
+          "contractFrom": "2021-02-17T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-02-17T23:00:00.000Z",
+          "offerTo": "2021-02-17T23:00:00.000Z",
+          "iconId": 2,
+          "premium": {
+            "currencyCode": "CHF",
+            "amount": 999
+          },
+          "state": {
+            "key": "1",
+            "value": "In bearbeitung"
+          },
+          "recommendation": false,
+          "offerDocument": {
+            "title": "Title",
+            "ecmDocId": "7804e53a-eb1b-5f40-9d2a-2abb9b2cfc08",
+            "documentTyp": {
+              "key": "1002",
+              "value": "Offerte"
+            }
+          },
+          "avbDocuments": [
+            {
+              "title": "Title",
+              "pubDocId": 123
+            }
+          ]
+        }
+      ],
+      "productName": "Motorfahrzeug",
+      "description": "ZH 123456",
+      "businessCd": "87001"
+    },
+    {
+      "offers": [
+        {
+          "uuid": "6f1049fd-010f-4566-979c-3f584e2d5f184",
+          "productName": "Hausratversicherung",
+          "descriptionOfferGroup": "Street 124, City",
+          "businessCd": "87000",
+          "iconId": 5,
+          "description": "Variante #1",
+          "contractFrom": "2021-02-17T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-02-17T23:00:00.000Z",
+          "offerTo": "2021-02-17T23:00:00.000Z",
+          "premium": {
+            "currencyCode": "CHF",
+            "amount": 201
+          },
+          "state": {
+            "key": "0",
+            "value": "Offen"
+          },
+          "recommendation": true,
+          "offerDocument": {
+            "title": "Title",
+            "ecmDocId": "7804e53a-eb1b-5f40-9d2a-2abb9b2cfc08",
+            "documentTyp": {
+              "key": "1002",
+              "value": "Offerte"
+            }
+          },
+          "avbDocuments": [
+            {
+              "title": "Title",
+              "pubDocId": 123
+            },
+            {
+              "title": "Title",
+              "pubDocId": 456
+            }
+          ]
+        },
+        {
+          "uuid": "6f1049fd-010f-4566-979c-3f584e2d5f185",
+          "businessCd": "87000",
+          "productName": "Hausratversicherung",
+          "descriptionOfferGroup": "Street 124, City",
+          "iconId": 2,
+          "description": "Variante #2",
+          "contractFrom": "2021-02-17T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-02-17T23:00:00.000Z",
+          "offerTo": "2021-02-17T23:00:00.000Z",
+          "premium": {
+            "currencyCode": "CHF",
+            "amount": 101.55
+          },
+          "state": {
+            "key": "0",
+            "value": "Offen"
+          },
+          "recommendation": false,
+          "offerDocument": {
+            "title": "Title",
+            "ecmDocId": "7804e53a-eb1b-5f40-9d2a-2abb9b2cfc08",
+            "documentTyp": {
+              "key": "1002",
+              "value": "Offerte"
+            }
+          },
+          "avbDocuments": [
+            {
+              "title": "Title",
+              "pubDocId": 123
+            }
+          ]
+        },
+        {
+          "uuid": "6f1049fd-010f-4566-979c-3f584e2d5f186",
+          "businessCd": "87000",
+          "productName": "Hausratversicherung",
+          "descriptionOfferGroup": "Street 124, City",
+          "description": "Variante #3",
+          "contractFrom": "2021-02-17T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-02-17T23:00:00.000Z",
+          "offerTo": "2021-02-17T23:00:00.000Z",
+          "premium": {
+            "currencyCode": "CHF",
+            "amount": 1301.55
+          },
+          "iconId": 2,
+          "state": {
+            "key": "2",
+            "value": "Abgeschlossen"
+          },
+          "recommendation": false,
+          "offerDocument": {
+            "title": "Title",
+            "ecmDocId": "7804e53a-eb1b-5f40-9d2a-2abb9b2cfc08",
+            "documentTyp": {
+              "key": "1002",
+              "value": "Offerte"
+            }
+          },
+          "avbDocuments": [
+            {
+              "title": null,
+              "pubDocId": 123
+            }
+          ]
+        },
+        {
+          "uuid": "6f1049fd-010f-4566-979c-3f584e2d5f189",
+          "businessCd": "87000",
+          "productName": "Hausratversicherung",
+          "descriptionOfferGroup": "Street 1245, City",
+          "iconId": 11,
+          "description": null,
+          "contractFrom": "2021-02-17T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-02-17T23:00:00.000Z",
+          "offerTo": "2021-02-17T23:00:00.000Z",
+          "premium": {
+            "currencyCode": "CHF",
+            "amount": 203.1
+          },
+          "state": {
+            "key": "0",
+            "value": "Offen"
+          },
+          "recommendation": false,
+          "offerDocument": {
+            "title": "Title",
+            "ecmDocId": "7804e53a-eb1b-5f40-9d2a-2abb9b2cfc08",
+            "documentTyp": {
+              "key": "1002",
+              "value": "Offerte"
+            }
+          },
+          "avbDocuments": [
+            {
+              "title": "Title",
+              "pubDocId": 123
+            }
+          ]
+        }
+      ],
+      "productName": "Hausratversicherung",
+      "description": "Street 124, City",
+      "businessCd": "87000"
+    }
+  ],
+  "advisor": {
+    "advisorId": "C111222",
+    "firstName": "Thomas",
+    "lastName": "Müller",
+    "mail": "thomas.mueller@axa.ch",
+    "phoneNumber": "+41 12 123 123",
+    "mobileNumber": "",
+    "street": "Random strasse 123",
+    "postBox": "",
+    "postalCode": "8400",
+    "city": "Winterthur",
+    "countryCode": {
+      "key": "CH",
+      "value": "Schweiz"
+    },
+    "genderCode": {
+      "key": "m",
+      "value": "männlich"
+    },
+    "advisorInformationDocument": {
+      "label": "Beraterinformationen",
+      "url": "https://www.axa.ch/doc/ace2t"
+    }
+  }
+}

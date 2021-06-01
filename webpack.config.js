@@ -1,12 +1,10 @@
 const path = require('path');
-const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const config = require('config');
-const fs = require('fs');
 const prefixer = require('postcss-prefix-selector');
 const packagejson = require('./package.json');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-const babelrc = JSON.parse(fs.readFileSync(`${__dirname}/.babelrc`));
 const { sep } = path;
 
 /*-------------------------------------------------*/
@@ -14,8 +12,7 @@ const outputPath = 'lib';
 
 // Prefix is the same as __APP_NAME_NODASH__ in midgard
 // Now the CSS selector for each pod in midgard will be added. This makes sure, that each pod only uses its own CSS selectors.
-const cssPrefix = `.${packagejson.name.replace('@axa-ch/', '').replace(new RegExp('-', 'g'),'')}`;
-
+const cssPrefix = `.${packagejson.name.replace('@axa-ch/', '').replace(new RegExp('-', 'g'), '')}`;
 
 module.exports = {
   // webpack optimization mode
@@ -25,13 +22,20 @@ module.exports = {
   entry: {
     // important to first build deploy so that in the library output the name
     // is matching with index.js (LIFO)
-    devonly: './__mock/devonly.js',
-    index: './src/index.js',
+    devonly: './src/devonly.ts',
+    index: './src/index.ts',
+  },
+
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    plugins: [
+      new TsconfigPathsPlugin(),
+    ]
   },
 
   // output file(s) and chunks
   output: {
-    library: 'PodAdaptiveCardsTestings',
+    library: 'PodMyaxaOffers',
     libraryTarget: 'umd',
     libraryExport: 'default',
     path: path.resolve(__dirname, outputPath),
@@ -43,19 +47,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.js$/,
-        include: [
-          /src/,
-          new RegExp(`node_modules${sep}lit-html`),
-          new RegExp(`node_modules${sep}lit-element`),
-          new RegExp(`node_modules${sep}@axa-ch(?!${sep}patterns-library-polyfill)`),
-        ],
-        use: {
-          loader: 'babel-loader',
-          options: {
-            ...babelrc,
-          },
-        },
+        test: /\.(tsx|ts)$/,
+        // TODO Use babel loader
+        use: 'ts-loader',
       },
       {
         test: /.(png|jpg|gif)$/i,
@@ -76,15 +70,18 @@ module.exports = {
             options: {
               plugins: () => [
                 prefixer({
-                  prefix: cssPrefix
-                })
-              ]
-            }
+                  prefix: cssPrefix,
+                }),
+              ],
+            },
           },
-          'sass-loader'
+          'sass-loader',
         ],
       },
-      
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
     ],
   },
 

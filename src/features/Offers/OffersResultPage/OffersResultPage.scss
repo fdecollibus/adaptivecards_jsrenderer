@@ -1,0 +1,41 @@
+@import '../../../styles/colors';
+@import '../../../styles/respond';
+
+.OffersResultPage__TileOffset {
+  text-align: left;
+}
+
+.OffersResultPage__MainContent {
+  .Typo {
+    white-space: pre-wrap;
+  }
+}
+
+.OffersResultPage__list {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+
+  &>axa-heading {
+    text-align: left;
+    margin-right: 36px;
+  }
+  &>.Typo {
+    white-space: pre-wrap;
+    width: 100%;
+    margin-top: 27px;
+
+    @include respond-up-md() {
+      width: 60%;
+    }
+  }
+}
+
+.OffersResultPage__icon {
+  color: $color-axa-blue;
+
+  svg {
+    width: 96px;
+    height: 96px;
+  }
+}

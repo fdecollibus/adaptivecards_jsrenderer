@@ -1,0 +1,43 @@
+@import "../../../styles/colors";
+@import "../../../styles/respond";
+
+.Total {
+  background-color: $color-mercury;
+  width: auto;
+  display: inline-flex;
+  padding-left: 30px;
+  padding-right: 30px;
+  align-items: center;
+
+  @include respond-down-xs() {
+    flex-direction: column;
+    min-height: 40px;
+  }
+
+  @include respond-up-sm() {
+    height: 40px;
+  }
+
+  &__label {
+    text-transform: uppercase;
+    padding-right: 10px;
+  }
+
+  &__amountYear {
+    color: $color-dark-grey;
+    padding-right: 10px;
+
+    /* reduce jumps between 3-4 digits switch */
+    min-width: 115px;
+    text-align: right;
+    flex-grow: 100; /* expand this col when .Total is 100% on detail page */
+  }
+
+  &__amountMonth {
+    color: $color-dark-grey;
+
+    /* reduce jumps between 2-3 digits switch */
+    min-width: 142px;
+    text-align: right;
+  }
+}

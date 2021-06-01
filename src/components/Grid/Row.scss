@@ -1,0 +1,17 @@
+@import '../../styles/grid';
+@import '../../styles/respond';
+
+$grid-gutter-width: 30px;
+
+.Row {
+  // 0 - xs
+  @include make-row($grid-gutter-width);
+  margin-left: 0;
+  margin-right: 0;
+
+  // xs+
+  @include respond-up-xs() {
+    @include make-row($grid-gutter-width);
+  }
+}
+
