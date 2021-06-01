@@ -1,5 +1,6 @@
 import * as AdaptiveCards from "adaptivecards";
 
+import { ProgressBar } from "./CustomCard";
 export default class PodAdaptiveCardsTestings {
   private elem: HTMLElement;
 
@@ -10,6 +11,8 @@ export default class PodAdaptiveCardsTestings {
   }
 
   async init() {
+    this.registerCustomComponents();
+
     this.elem.innerHTML = "<h1>Adaptive Cards Playground</h1>";
 
     let fetchedCardJSON;
@@ -40,7 +43,6 @@ export default class PodAdaptiveCardsTestings {
     // whenever an action is clicked in the card
     adaptiveCard.onExecuteAction = function (action) {
       alert("Ow!");
-      console.log(action);
     };
 
     // For markdown support you need a third-party library
@@ -60,5 +62,12 @@ export default class PodAdaptiveCardsTestings {
 
     // And finally insert it somewhere in your page:
     this.elem.appendChild(renderedCard as Node);
+  }
+
+  registerCustomComponents(): void {
+    AdaptiveCards.GlobalRegistry.elements.register(
+      ProgressBar.JsonTypeName,
+      ProgressBar
+    );
   }
 }

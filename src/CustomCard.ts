@@ -105,4 +105,3 @@ export class ProgressBar extends AC.CardElement {
     }
   }
 }
-AC.GlobalRegistry.elements.register(ProgressBar.JsonTypeName, ProgressBar);
