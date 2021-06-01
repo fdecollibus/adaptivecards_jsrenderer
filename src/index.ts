@@ -59,18 +59,27 @@ export default class PodAdaptiveCardsTestings {
     //     };
 
     // Parse the card payload
-    // adaptiveCard.parse({
-    //   type: "AdaptiveCard",
-    //   version: "1.0",
-    //   body: [
-    //     {
-    //       type: "PLDropdown",
-    //       title: "This is a progress bar",
-    //       value: 100,
-    //     },
-    //   ],
-    // });
-    adaptiveCard.parse(fetchedCardJSON);
+    adaptiveCard.parse({
+      type: "AdaptiveCard",
+      version: "1.0",
+      body: [
+        {
+          id: "schaden_entstehung",
+          type: "PLDropdown",
+          placeholder: "Bitte wählen ...",
+          label: "This is a progress bar",
+          choices: JSON.stringify([
+            {
+              name: "Diebstahl, Einbruch und Verlust",
+              value: "Choice 1 - was muss ich da eingeben?",
+            },
+            { name: "Beschädigung und Zerstörung", value: "Choice 2" },
+            { name: "Sonstiges", value: "Choice 3" },
+          ]),
+        },
+      ],
+    });
+    // adaptiveCard.parse(fetchedCardJSON);
 
     // Render the card to an HTML element:
     var renderedCard = adaptiveCard.render();
