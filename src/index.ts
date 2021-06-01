@@ -1,6 +1,8 @@
 import * as AdaptiveCards from "adaptivecards";
 
 import { ProgressBar } from "./CustomCard";
+import { PLDropdown } from "./pl-dropdown";
+
 export default class PodAdaptiveCardsTestings {
   private elem: HTMLElement;
 
@@ -15,19 +17,19 @@ export default class PodAdaptiveCardsTestings {
 
     this.elem.innerHTML = "<h1>Adaptive Cards Playground</h1>";
 
-    // let fetchedCardJSON;
-    // try {
-    //   fetchedCardJSON = await (
-    //     await fetch(
-    //       "https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow"
-    //     )
-    //   ).json();
-    // } catch (e) {
-    //   console.error(
-    //     "Fetch card failed! CORS issue? Parsing issue? Connectivity issue?",
-    //     e
-    //   );
-    // }
+    let fetchedCardJSON;
+    try {
+      fetchedCardJSON = await (
+        await fetch(
+          "https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow"
+        )
+      ).json();
+    } catch (e) {
+      console.error(
+        "Fetch card failed! CORS issue? Parsing issue? Connectivity issue?",
+        e
+      );
+    }
 
     // Create an AdaptiveCard instance
     var adaptiveCard = new AdaptiveCards.AdaptiveCard();
@@ -45,6 +47,8 @@ export default class PodAdaptiveCardsTestings {
       alert("Ow!");
     };
 
+    console.log(fetchedCardJSON);
+
     // For markdown support you need a third-party library
     // E.g., to use markdown-it, include in your HTML page:
     //     <script type="text/javascript" src="https://unpkg.com/markdown-it/dist/markdown-it.js"></script>
@@ -60,12 +64,13 @@ export default class PodAdaptiveCardsTestings {
       version: "1.0",
       body: [
         {
-          type: "ProgressBar",
+          type: "PLDropdown",
           title: "This is a progress bar",
           value: 100,
         },
       ],
     });
+    // adaptiveCard.parse(fetchedCardJSON);
 
     // Render the card to an HTML element:
     var renderedCard = adaptiveCard.render();
@@ -78,6 +83,10 @@ export default class PodAdaptiveCardsTestings {
     AdaptiveCards.GlobalRegistry.elements.register(
       ProgressBar.JsonTypeName,
       ProgressBar
+    );
+    AdaptiveCards.GlobalRegistry.elements.register(
+      PLDropdown.JsonTypeName,
+      PLDropdown
     );
   }
 }
