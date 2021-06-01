@@ -1,0 +1,15 @@
+@import '../../styles/colors';
+
+.ErrorTile {
+  background-color: $color-ocean-blue !important;
+  padding: 65px 2rem 78px 2rem;
+
+  .ErrorMessage {
+    padding: 0;
+    color: white;
+
+    a {
+      color: inherit;
+    }
+  }
+}

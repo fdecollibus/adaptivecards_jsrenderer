@@ -1,0 +1,39 @@
+@import '../../styles/colors';
+@import '../../styles/respond';
+
+.DocumentsList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.DocumentLink {
+  border-bottom: 1px solid $color-mercury;
+  min-height: 45px;
+  display: flex;
+  align-items: center;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+
+  @include respond-down-xs {
+    display: block;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}
+
+.DocumentLink__linkWrapper {
+  flex-grow: 1;
+  padding-left: 15px;
+}
+
+.DocumentLink__date {
+  padding-right: 15px;
+
+  @include respond-down-xs {
+    padding-left: 15px;
+  }
+}

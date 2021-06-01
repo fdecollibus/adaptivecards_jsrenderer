@@ -1,0 +1,22 @@
+@import '../../styles/grid';
+@import '../../styles/respond';
+
+/// Container widths
+///
+/// Set the container width, and override it for fixed navbars in media queries.
+.Container {
+  @include make-container();
+  @include make-container-max-widths();
+  @include respond-down-xs {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/// Fluid container
+///
+/// Utilizes the mixin meant for fixed width containers, but with 100% width for
+/// fluid, full width layouts.
+.Container-fluid {
+  @include make-container();
+}

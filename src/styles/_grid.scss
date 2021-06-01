@@ -1,0 +1,390 @@
+//
+// Taken from PLv1 src/styles/grid/_grid-mixins.scss
+//
+// DEPRECATED: will be not needed any more when Header and Col components get implemented in PLv2,
+// and we remove our implementations which still use these PLv1 mixins.
+//
+@import './respond';
+
+/// Number of columns
+$grid-columns: 12 !default;
+
+/// The gutter width
+$grid-gutter-width: 30px !default;
+
+/// The grid-tiers and associated breakpoints
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 576px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 992px,
+  // Extra large screen / wide desktop
+  xl: 1200px,
+  // ultra large screen / extremly wide desktop
+  xxl: 1440px
+) !default;
+
+/// Responsive CSS `max-width` at each grid-tier
+$container-max-widths: (
+  xs: auto,
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+) !default;
+
+
+/// Applies maximum width of the container by column size.
+/// @param {number,string} $max-width - The maximum width to be applied.
+/// @param {number} $size [$grid-columns] - Amount of columns used.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
+@function get-max-width($max-width, $size: $grid-columns, $columns: $grid-columns) {
+  // IMPORTANT: deal with numbers only, skip stuff like auto
+  @if type_of($max-width) == number {
+    $max-width: $max-width / $columns * $size;
+  }
+
+  @return $max-width;
+}
+
+
+/// Creates a wrapper for a series of rows.
+/// @param {number} $gutter-width [$grid-gutter-width] - The gutter width applied to the wrapper.
+@mixin make-container($gutter-width: $grid-gutter-width) {
+  @include make-gutter($gutter-width);
+
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/// Applies a gutter.
+/// @param {number} $gutter-width [$grid-gutter-width] - The applied gutter width.
+@mixin make-gutter($gutter-width: $grid-gutter-width) {
+  @if type_of($gutter-width) == number {
+    $gutter-width: ($gutter-width / 2);
+  }
+
+  padding-right: $gutter-width;
+  padding-left: $gutter-width;
+}
+
+/// Reverts a gutter.
+/// @param {number} $gutter-width [$grid-gutter-width] - The gutter width to be reverted.
+@mixin revert-gutter($gutter-width: $grid-gutter-width) {
+  @if type_of($gutter-width) == number {
+    $gutter-width: ($gutter-width / -2);
+  }
+
+  margin-right: $gutter-width;
+  margin-left: $gutter-width;
+}
+
+@mixin no-gutters() {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .u-col,
+  > [class*="u-col"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+/// For each grid-tier, define the maximum width of the container in a media query.
+/// @param {Map} $max-widths [$container-max-widths] - Responsive CSS `max-width` at each grid-tier.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include respond-up($breakpoint, $breakpoints) {
+      @include make-max-width($breakpoint: $breakpoint, $max-widths: $max-widths);
+    }
+  }
+}
+
+/// Applies maximum width of the container by breakpoint and column size.
+/// @param {number} $size [$grid-columns] - Amount of columns used.
+/// @param {string} $breakpoint [sm] - Breakpoint to use of max-width map.
+/// @param {Map} $max-widths [$container-max-widths] - Responsive CSS `max-width` at each grid-tier.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
+@mixin make-max-width($size: $grid-columns, $breakpoint: sm, $max-widths: $container-max-widths, $columns: $grid-columns) {
+  $max-width: map_get($max-widths, $breakpoint);
+
+  max-width: get-max-width($max-width, $size, $columns);
+}
+
+/// Creates a wrapper for a series of columns.
+/// @param {number} $gutter-width [$grid-gutter-width] - The applied gutter width.
+@mixin make-row($gutter-width: $grid-gutter-width) {
+  @include revert-gutter($gutter-width);
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/// Make the element grid-ready (applying everything but the width).
+/// @param {number} $gutter-width [$grid-gutter-width] - The applied gutter width.
+@mixin make-col-ready($gutter-width: $grid-gutter-width) {
+  @include make-gutter($gutter-width);
+
+  position: relative;
+
+  // Prevent columns from becoming too narrow when at smaller grid tiers by
+  // always setting `width: 100%;`. This works because we use `flex` values
+  // later on to override this initial width.
+  width: 100%;
+  min-height: 1px; // Prevent collapsing
+}
+
+/// Creates a column.
+/// @param {number} $size [$grid-columns] - Amount of columns used.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
+@mixin make-col($size, $columns: $grid-columns) {
+  $column-width: percentage($size / $columns);
+
+  // Add a `max-width` to ensure content within each column does not blow out
+  // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+  // do not appear to require this.
+  max-width: $column-width;
+
+  flex: 0 0 $column-width;
+}
+
+/// Offsets a column.
+/// @param {number} $size [$grid-columns] - Amount of columns used to offset.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+
+  margin-left: if($num == 0, 0, percentage($num));
+}
+
+/// Escapes out of a column by negative margin.
+/// @param {number} $size [$grid-columns] - Amount of columns used to escape.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
+@mixin escape-col($size, $columns: $grid-columns) {
+  @include escape-col-left($size, $columns);
+  @include escape-col-right($size, $columns);
+}
+
+/// Escapes onto left of a column by negative margin.
+/// @param {number} $size [$grid-columns] - Amount of columns used to escape.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
+@mixin escape-col-left($size, $columns: $grid-columns) {
+  $column-width: percentage(1 / $columns);
+
+  margin-left: -($column-width * $size);
+}
+
+/// Escapes onto right of a column by negative margin.
+/// @param {number} $size [$grid-columns] - Amount of columns used to escape.
+/// @param {number} $columns [$grid-columns] - Number of available columns.
+@mixin escape-col-right($size, $columns: $grid-columns) {
+  $column-width: percentage(1 / $columns);
+
+  margin-right: -($column-width * $size);
+}
+
+/// Resets a column.
+/// @param {any} $important [null] - Trump this reset.
+@mixin reset-col($important: null) {
+  @if $important {
+    $important: !important;
+  }
+
+  position: static $important;
+
+  width: auto $important;
+  max-width: none $important;
+
+  flex: auto $important;
+}
+
+
+/// Get the next breakpoint.
+/// @param {string} $breakpoint - Breakpoint to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+/// @param {list} $breakpoint-names [map-keys($breakpoints)] - All available breakpoint keys.
+@function next-breakpoint($breakpoint, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $breakpoint);
+
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+/// Get a specific breakpoint, either by key or concrete number.
+/// @param {string} $breakpoint - Breakpoint to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+/// @param {up|down} $direction [down] - Direction of the breakpoint.
+@function get-breakpoint_v1($breakpoint, $breakpoints: $grid-breakpoints, $direction: down) {
+  @if type_of($breakpoints) != map {
+    @error "$breakpoints #{$breakpoints} has to be a Map.";
+  }
+
+  $type-of-breakpoint: type_of($breakpoint);
+  $breakpoint-is-number: $type-of-breakpoint == number;
+  $breakpoint-is-mapped: $type-of-breakpoint == string and map_has_key($breakpoints, $breakpoint);
+
+  @if (not $breakpoint-is-number and not $breakpoint-is-mapped) {
+    @error "$breakpoint #{$breakpoint} has to be either a Number or valid key of a breakpoints Map.";
+  }
+
+  @if $breakpoint-is-mapped {
+    @if $direction == down {
+      $breakpoint: next-breakpoint($breakpoint, $breakpoints);
+      $breakpoint: max-width(map_get($breakpoints, $breakpoint));
+    } @else {
+      $breakpoint: map_get($breakpoints, $breakpoint);
+    }
+  }
+
+  @if (type_of($breakpoint) == number and $breakpoint < 0) {
+    @error "$breakpoint #{$breakpoint} can't be negative.";
+  }
+
+  @return $breakpoint;
+}
+
+/// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+///
+///    >> breakpoint-min(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+///    576px
+///
+/// @param {string} $name - Breakpoint name to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+
+  @return if($min != 0, $min, null);
+}
+
+/// Maximum breakpoint width. Null for the largest (last) breakpoint.
+/// The maximum value is calculated as the minimum of the next one less 0.02px
+/// to work around the limitations of `min-` and `max-` prefixes and viewports with fractional widths.
+/// See https://www.w3.org/TR/mediaqueries-4/#mq-min-max
+/// Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
+/// See https://bugs.webkit.org/show_bug.cgi?id=178261
+///
+///    >> breakpoint-max(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+///    767.98px
+///
+/// @param {string} $name - Breakpoint name to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+
+  @return if($next, breakpoint-min($next, $breakpoints) - 0.02px, null);
+}
+
+/// Returns a blank string if smallest breakpoint, otherwise returns the name with a dash in front.
+/// Useful for making responsive utilities.
+///
+///    >> breakpoint-infix(xs, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+///    ""  (Returns a blank string)
+///    >> breakpoint-infix(sm, (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px))
+///    "-sm"
+///
+/// @param {string} $name - Breakpoint name to use of $breakpoints map.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+
+/// Style the element when the viewport is at the given breakpoint or wider.
+///
+/// @param {string|number} $breakpoint - Either an existing breakpoint key or a valid CSS dimension.
+/// @param {Map} $breakpoints [$grid-breakpoints] - The grid-tiers and associated breakpoints.
+@mixin respond-up($breakpoint, $breakpoints: $grid-breakpoints) {
+  $min: get-breakpoint_v1($breakpoint, $breakpoints, up);
+
+  @if (type_of($min) == number and $min > 0) {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+
+@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+
+    width: 100%;
+    min-height: 1px; // Prevent columns from collapsing when empty
+    padding-right: ($gutter / 2);
+    padding-left: ($gutter / 2);
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    // Allow columns to stretch full width below their breakpoints
+    @for $i from 1 through $columns {
+      .u-col#{$infix}-#{$i} {
+        @extend %grid-column;
+        @include respond-down-xs() {
+          padding-right: 0;
+          padding-left: 0;
+        }
+      }
+    }
+
+    .u-col#{$infix},
+    .u-col#{$infix}-auto {
+      @extend %grid-column;
+    }
+
+    @include respond-up($breakpoint, $breakpoints) {
+      // Provide basic `.u-col-{bp}` classes for equal-width flexbox columns
+      .u-col#{$infix} {
+        max-width: 100%;
+
+        flex-basis: 0;
+        flex-grow: 1;
+      }
+
+      .u-col#{$infix}-auto {
+        width: auto;
+        max-width: none; // Reset earlier grid tiers
+
+        flex: 0 0 auto;
+      }
+
+      @for $i from 1 through $columns {
+        .u-col#{$infix}-#{$i} {
+          @include make-col($i, $columns);
+        }
+      }
+
+      .u-order#{$infix}-first {
+        order: -1;
+      }
+
+      .u-order#{$infix}-last {
+        order: $columns + 1;
+      }
+
+      @for $i from 0 through $columns {
+        .u-order#{$infix}-#{$i} {
+          order: $i;
+        }
+      }
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .u-offset-0
+          .u-offset#{$infix}-#{$i} {
+            @include make-col-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}

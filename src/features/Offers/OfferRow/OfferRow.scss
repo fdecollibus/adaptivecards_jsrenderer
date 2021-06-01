@@ -1,0 +1,249 @@
+@import "../../../styles/colors";
+@import "../../../styles/mixins";
+@import "../../../styles/respond";
+@import "../../../styles/typo";
+
+$icon-size: 52px;
+
+.OfferRow {
+  margin-bottom: 12px;
+  border: 1px solid $color-light-grey;
+  background-color: $color-prim-white;
+  color: $color-dark-grey;
+  width: 100%;
+  position: relative;
+
+  &:not(&--booked):not(&--inCart) {
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-axa-blue;
+    }
+  }
+
+  .OfferRow__recommendedBadge {
+    @include recommendedBadge();
+
+    position: absolute;
+    top: -11px;
+    left: 68px;
+
+    @include respond-down-xs() {
+      left: 8px;
+    }
+  }
+
+  .OfferRow__inner {
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @include respond-up-xs {
+      flex-wrap: nowrap;
+    }
+    @include respond-down-md {
+      padding: 15px 12px;
+      flex-direction: row;
+    }
+    @include respond-up-md {
+      padding: 14px 28px;
+    }
+  }
+
+  .OfferRow__checkboxCol {
+    flex: 0 0 20px;
+
+    @include respond-down-md {
+      margin: 0 20px 0 10px;
+    }
+    @include respond-up-md {
+      margin-right: 20px;
+    }
+  }
+
+  .OfferRow__iconCol {
+    flex: 0 0 60px;
+    @include respond-up-md {
+      margin-right: 15px;
+    }
+  }
+
+  .OfferRow__Icon {
+    width: $icon-size;
+    height: $icon-size;
+    color: currentColor;
+  }
+
+  .OfferRow__textsWrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include respond-up-md {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .OfferRow__title, .OfferRow__description {
+    display: flex;
+    word-break: break-word;
+
+    @include respond-up-md {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .OfferRow__titlesWrapper {
+    flex: 1 0 20%;
+  }
+
+  .OfferRow__title {
+    display: flex;
+    flex-wrap: wrap;
+    @include text(t4, bold);
+    margin-bottom: 5px;
+
+    @include respond-down-md {
+      flex-direction: column;
+    }
+  }
+
+  .OfferRow__description {
+    flex: 1 0 20%;
+    @include text(t4);
+    color: $color-medium-grey;
+  }
+
+  .OfferRow__amountCol {
+    @include text(t4, semibold);
+
+    @include respond-up-md {
+      flex: 0 0 115px;
+    }
+  }
+
+  .OfferRow__bookedCol {
+
+    @include respond-up-md {
+      flex: 0 0 160px;
+      text-align: center;
+    }
+  }
+
+  .OfferRow__bookedBadge {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    // ordered
+    &--1 {
+      background-color: $color-apache;
+    }
+
+    // active
+    &--2 {
+      background-color: $color-viridian-green;
+    }
+  }
+
+  .OfferRow__linksWrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex: 0 0 200px;
+    flex-direction: column;
+
+    @include respond-up-md() {
+      flex: 0 0 300px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
+  .OfferRow__downloadCol {
+    margin-right: 0;
+    @include respond-up-md() {
+      margin-right: 20px;
+    }
+    @include respond-down-md {
+      margin-bottom: 6px;
+    }
+  }
+
+  .OfferRow__detailCol {
+    @include respond-down-md {
+      margin-bottom: 6px;
+    }
+  }
+
+  &--selected {
+    border-width: 2px;
+    border-color: $color-axa-blue;
+    background-color: rgba(0, 0, 143, 0.05);
+
+    .OfferRow__inner {
+      border: none;
+    }
+  }
+
+  &--inCart {
+    border-width: 2px;
+    border-color: $color-light-grey;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: $color-silver;
+
+    .OfferRow__inner {
+      border: none;
+    }
+
+    .OfferRow__description {
+      color: $color-silver;
+    }
+
+    .OfferRow__checkboxCol axa-checkbox {
+      filter: grayscale(100%) opacity(20%);
+
+      .a-checkbox__wrapper {
+        cursor: default;
+      }
+    }
+
+    .OfferRow__title,
+    .OfferRow__description,
+    .OfferRow__amountCol {
+      opacity: 50%;
+    }
+
+    //.OfferRow__badge {
+    //  background-color: $color-silver;
+    //  opacity: 50%;
+    //}
+
+    .OfferRow__inCartCol {
+      position: absolute;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: $color-grey;
+      @include text(t4, bold);
+      text-transform: uppercase;
+
+      @include respond-down-md {
+        padding-bottom: 80px;
+      }
+    }
+  }
+
+  // todo add once we have final design
+  //&--booked {
+  //  .OfferRow__badge {
+  //    background-color: $color-apache;
+  //  }
+  //}
+}

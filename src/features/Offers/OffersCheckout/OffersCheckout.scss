@@ -1,0 +1,85 @@
+@import "../../../styles/respond";
+
+.OffersCheckout {
+  width: 100%;
+
+  .OffersCheckout__Container {
+    z-index: 20;
+    padding-top: 18px;
+
+    & > axa-link {
+      @include respond-down-xs() {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  .OffersCheckout__background {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    top: 255px;
+
+    svg {
+      width: 100%;
+    }
+  }
+
+  .OffersCheckout__Tile {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+
+    @include respond-up-sm() {
+      width: 75%;
+    }
+    @include respond-up-md() {
+      width: 60%;
+    }
+    @include respond-up-xl() {
+      width: 54%;
+    }
+
+    & axa-heading {
+      text-align: center;
+    }
+  }
+
+  .OffersCheckout__noItemsMessage {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    & > * {
+      padding-bottom: 30px;
+    }
+  }
+
+  .OffersCheckout__SummaryRow {
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 40px;
+    align-items: baseline;
+  }
+
+  .OffersCheckout__SummaryRowLabel {
+    flex: 1 0 auto;
+  }
+
+  .OffersCheckout__SummaryRowPriceMonthly {
+    margin-left: 6px;
+  }
+
+  .OffersCheckout__form {
+
+    & > * {
+      padding-bottom: 15px;
+    }
+
+    & > .OffersCheckout__ButtonWrapper {
+      padding-top: 50px;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}

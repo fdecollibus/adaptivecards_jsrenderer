@@ -1,0 +1,105 @@
+// Control automatic hyphens through CSS.
+//
+// copy from PLv1 src/styles/mixins/_word-break.scss
+//
+// @link https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+// @param {string} $hyphens ['auto'] - Sets the `hyphens` props or `'none'` to disable it.
+@mixin word-break($hyphens: 'auto') {
+  @if $hyphens == 'none' {
+    hyphens: manual;
+    overflow-wrap: normal;
+    word-wrap: normal;
+  } @else {
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    hyphens: unquote($hyphens);
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+}
+
+/// Add or remove ellipsis for overflowing text.
+///
+// copy from PLv1 src/styles/mixins/_ellipsis.scss
+//
+/// @link https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+/// @param {string} $textOverflow ["ellipsis"] - The style to be used for overflowing text (`ellipsis`, `none`, etc.).
+@mixin ellipsis($textOverflow: 'ellipsis') {
+  @if $textOverflow == 'none' {
+    overflow: visible;
+
+    text-overflow: clip;
+    white-space: normal;
+  } @else {
+    overflow: hidden;
+
+    text-overflow: unquote($textOverflow);
+    white-space: nowrap;
+  }
+}
+
+/// Reset a button's style.
+@mixin button-reset() {
+  background: transparent;
+  border: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+
+    cursor: pointer;
+  }
+}
+
+/// Create basic icon css
+///
+/// @param {number} $width - The icon's width.
+/// @param {number} $height [$width] - The icon's height.
+@mixin icon($width, $height: $width) {
+  width: $width;
+  height: $height;
+
+  // fix SVG are inline elements
+  display: block;
+
+  // fix external icons not specifying any valid color
+  fill: currentColor;
+}
+
+/// Create basic dimension css
+///
+/// @param {number} $width - The icon's width.
+/// @param {number} $height [$width] - The icon's height.
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/// Remove default styling of lists.
+@mixin unstyle-list {
+  padding: 0;
+  margin: 0;
+
+  list-style-type: none;
+}
+
+/// Enable hardware accelerated (GPU) rendering.
+///
+/// @param {string} $visibility ["hidden"] - Style of `backface-visibility`.
+@mixin hardware-accelerate($visibility: hidden, $x: 0, $y: 0, $z: 0) {
+  transform: translate3d($x, $y, $z);
+  backface-visibility: $visibility;
+}
+
+@mixin recommendedBadge() {
+  background-color: $color-viridian-green;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}

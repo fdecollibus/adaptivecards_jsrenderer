@@ -1,0 +1,113 @@
+@import '../../../styles/colors';
+@import '../../../styles/mixins';
+@import "../../../styles/respond";
+
+.OffersDetailPage__LinksWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+
+  @include respond-down-sm() {
+    flex-direction: column;
+
+    axa-link:first-child {
+      margin-bottom: 30px;
+    }
+  }
+
+  @include respond-down-xs() {
+    margin-left: 8px;
+  }
+}
+
+.OffersDetailPage__Content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  @include respond-up-md {
+    flex-direction: row;
+  }
+
+  .OfferDetailPage__bookedBadge {
+    background-color: $color-apache;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 5px;
+  }
+}
+
+.OffersDetailPage__Box {
+
+  &:first-of-type {
+    margin-bottom: 15px;
+  }
+
+  @include respond-up-md {
+    width: 50%;
+
+    &:first-of-type {
+      margin-right: 20px;
+    }
+  }
+
+  .OffersDetailPage__BoxInner {
+    border: 1px solid $color-silver;
+    padding: 18px 30px 30px 30px;
+  }
+
+  axa-heading {
+    margin-bottom: 30px !important;
+  }
+
+  .OffersDetailPage__recommendedBadge {
+    @include recommendedBadge();
+
+    position: absolute;
+    top: -11px;
+    left: 45px;
+
+    @include respond-down-xs() {
+      left: 8px;
+    }
+  }
+
+  .Total {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+  }
+
+}
+
+.OffersDetailPage__DownloadLinksWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .OffersDetailPage__DownloadLink--offerDocument,
+  .OffersDetailPage__DownloadLink--advisorDocument {
+    padding-bottom: 18px;
+  }
+
+  .OffersDetailPage__DownloadLink--avbDocument:not(:last-of-type) {
+    padding-bottom: 18px;
+  }
+}
+
+.OfferDetailPage__ButtonWrapper {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  & > * {
+    margin-top: 15px;
+    @include respond-up-md {
+      width: 340px;
+    }
+  }
+
+  axa-button, axa-button-link {
+    width: 100%;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "/rest/po/partner/v1/partners/:partnerNumber/offers": "offers/index.ts",
+  "/rest/pds-document/v1/documents/properties": "properties/index.ts",
+  "/rest/pds-document/v1/documents": "documents/data.json",
+  "/rest/po/document/v2/documents": "documents/data.json"
+}

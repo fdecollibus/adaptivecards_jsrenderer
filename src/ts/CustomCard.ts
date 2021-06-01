@@ -17,7 +17,7 @@ export class ProgressBar extends AC.CardElement {
     return this.getValue(ProgressBar.titleProperty);
   }
 
-  set title(value: string) {
+  set title(value: string | undefined) {
     if (this.title !== value) {
       this.setValue(ProgressBar.titleProperty, value);
 
@@ -48,7 +48,7 @@ export class ProgressBar extends AC.CardElement {
 
   //#endregion
 
-  private _titleElement: HTMLElement;
+  private _titleElement: any;
   private _leftBarElement: HTMLElement;
   private _rightBarElement: HTMLElement;
 
@@ -61,7 +61,7 @@ export class ProgressBar extends AC.CardElement {
     textBlock.wrap = true;
 
     this._titleElement = textBlock.render();
-    this._titleElement.style.marginBottom = "6px";
+    if (this._titleElement) this._titleElement.style.marginBottom = "6px";
 
     let progressBarElement = document.createElement("div");
     progressBarElement.style.display = "flex";
@@ -70,13 +70,13 @@ export class ProgressBar extends AC.CardElement {
     this._leftBarElement.style.height = "6px";
     this._leftBarElement.style.backgroundColor = AC.stringToCssColor(
       this.hostConfig.containerStyles.emphasis.foregroundColors.accent.default
-    );
+    ) as string;
 
     this._rightBarElement = document.createElement("div");
     this._rightBarElement.style.height = "6px";
     this._rightBarElement.style.backgroundColor = AC.stringToCssColor(
       this.hostConfig.containerStyles.emphasis.backgroundColor
-    );
+    ) as string;
 
     progressBarElement.append(this._leftBarElement, this._rightBarElement);
 
@@ -94,9 +94,10 @@ export class ProgressBar extends AC.CardElement {
 
     if (this.renderedElement) {
       if (this.title) {
-        this._titleElement.style.display = "none";
+        if (this._titleElement) this._titleElement.style.display = "none";
       } else {
-        this._titleElement.style.removeProperty("display");
+        if (this._titleElement)
+          this._titleElement.style.removeProperty("display");
       }
 
       this._leftBarElement.style.flex = "1 1 " + this.value + "%";

@@ -1,0 +1,50 @@
+@import '../../styles/colors';
+@import '../../styles/respond';
+
+.Tile {
+  background-color: $color-prim-white;
+  box-shadow: 0 1px 10px 0 rgba($color-black, 0.15);
+  margin-top: 30px; // base margin between all tiles
+
+  @include respond-up-xs {
+    border-radius: 4px;
+  }
+
+  &:last-child {
+    margin-bottom: 90px; // see reset below
+  }
+
+  // reset the 'Tile:last-child' behavior when Tile is inside a .m-col
+  .Col > & {
+    margin-bottom: 0;
+  }
+
+  // no bottom margin for services
+  &.ServicesTile {
+    margin-bottom: 0;
+  }
+
+}
+
+.Tile--no-shadow {
+  box-shadow: none;
+}
+
+.Tile--fluid {
+  border-radius: 0;
+}
+
+// To stretch the Tile within .Row > .Col (to have same height)
+//
+// <Row className={cx('TwoTilesRow')}>
+//   <Col size="12 md-6">
+//     <Tile title="Vertrag" isHalfLg>
+.StretchTilesRow {
+  & > .Col {
+    display: flex;
+
+    & > * {
+      width: 100%;
+    }
+  }
+}

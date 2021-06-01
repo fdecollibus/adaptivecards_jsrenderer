@@ -1,0 +1,1 @@
+export { OffersResultPage } from './OffersResultPage';

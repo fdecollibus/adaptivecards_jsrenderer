@@ -1,0 +1,62 @@
+@import '../../styles/mixins';
+@import '../../styles/respond';
+
+$lv-vertical-space-mobile: 1rem; // top padding of .LabelValue and bottom margin of .LVItem
+$lv-vertical-space-desktop: 0.5rem; // top padding of .LabelValue and bottom margin of .LVItem
+
+// generate classes and set widths
+@mixin make-label-value-widths($label-width, $value-width) {
+  .LVItem__Label {
+    width: $label-width;
+  }
+  .LVItem__Value {
+    width: $value-width;
+  }
+}
+
+.LabelValue {
+  @include word-break();
+
+  margin: 0;
+
+  &--rows {
+
+    &.LabelValue--colsSize-50by50 {
+      @include mobile() {
+        .LVItem {
+          flex-direction: column;
+        }
+        @include make-label-value-widths(100%, 100%);
+      }
+      @include desktop() {
+        @include make-label-value-widths(50%, 50%);
+      }
+    }
+
+    &:not(.LabelValue--isHalfLg):not(.LabelValue--colsSize-50by50) {
+      @include mobile() {
+        .LVItem {
+          flex-direction: column;
+        }
+        @include make-label-value-widths(100%, 100%);
+      }
+
+      @include respond-up-sm() {
+        @include make-label-value-widths(38%, 62%);
+      }
+
+      @include respond-up-md() {
+        @include make-label-value-widths(30%, 70%);
+      }
+
+      @include respond-up-sm() {
+        @include make-label-value-widths(24%, 76%);
+      }
+    }
+  }
+
+  &--columns {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

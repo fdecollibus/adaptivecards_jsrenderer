@@ -1,0 +1,236 @@
+{
+  "partnerNumber": 22422017,
+  "offerGroups": [
+    {
+      "businessCd": "99003",
+      "productName": "Motorfahrzeugversicherung",
+      "description": null,
+      "offers": [
+        {
+          "uuid": "57698b41-57c8-4b16-b6e1-7df2232ec61c",
+          "iconId": 1,
+          "businessCd": "99003",
+          "productName": "Motorfahrzeugversicherung",
+          "description": null,
+          "descriptionOfferGroup": null,
+          "contractFrom": "2021-03-11T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-03-11T23:00:00.000Z",
+          "offerTo": "2021-06-10T22:00:00.000Z",
+          "premium": {
+            "amount": 2504.4,
+            "currencyCode": "CHF"
+          },
+          "state": {
+            "key": "0",
+            "value": "Offen"
+          },
+          "offerDocument": {
+            "title": null,
+            "ecmDocId": "f0a20aab-ff04-8a4c-a365-0d01bd4275ab"
+          },
+          "avbDocuments": [
+            {
+              "pubDocId": 74,
+              "title": null
+            }
+          ],
+          "recommendation": true
+        },
+        {
+          "uuid": "09ad6f61-45c1-4c6a-a283-50545063f944",
+          "iconId": 1,
+          "businessCd": "99003",
+          "productName": "Motorfahrzeugversicherung",
+          "description": null,
+          "descriptionOfferGroup": null,
+          "contractFrom": "2021-03-11T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-03-11T23:00:00.000Z",
+          "offerTo": "2021-06-10T22:00:00.000Z",
+          "premium": {
+            "amount": 2805.75,
+            "currencyCode": "CHF"
+          },
+          "state": {
+            "key": "0",
+            "value": "Offen"
+          },
+          "offerDocument": {
+            "title": null,
+            "ecmDocId": "2d17e92a-3251-2143-91dc-af91deeed707"
+          },
+          "avbDocuments": [
+            {
+              "pubDocId": 74,
+              "title": null
+            }
+          ],
+          "recommendation": false
+        }
+      ]
+    },
+    {
+      "businessCd": "72010",
+      "productName": "Reiseversicherung INTERTOURS",
+      "description": null,
+      "offers": [
+        {
+          "uuid": "b1c9524a-212b-48c1-ab49-0798c4cbf34c",
+          "iconId": 21,
+          "businessCd": "72010",
+          "productName": "Reiseversicherung INTERTOURS",
+          "description": null,
+          "descriptionOfferGroup": null,
+          "contractFrom": "2021-03-11T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-03-11T23:00:00.000Z",
+          "offerTo": "2021-06-10T22:00:00.000Z",
+          "premium": {
+            "amount": 196.9,
+            "currencyCode": "CHF"
+          },
+          "state": {
+            "key": "0",
+            "value": "Offen"
+          },
+          "offerDocument": {
+            "title": null,
+            "ecmDocId": "12067840-c915-5b42-ac03-64e0d920dc48"
+          },
+          "avbDocuments": [
+            {
+              "pubDocId": 7037,
+              "title": null
+            }
+          ],
+          "recommendation": true
+        },
+        {
+          "uuid": "93fcf38e-9fda-40ae-ac94-001f62be105e",
+          "iconId": 21,
+          "businessCd": "72010",
+          "productName": "Reiseversicherung INTERTOURS",
+          "description": null,
+          "descriptionOfferGroup": null,
+          "contractFrom": "2021-03-11T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-03-11T23:00:00.000Z",
+          "offerTo": "2021-06-10T22:00:00.000Z",
+          "premium": {
+            "amount": 142.7,
+            "currencyCode": "CHF"
+          },
+          "state": {
+            "key": "0",
+            "value": "Offen"
+          },
+          "offerDocument": {
+            "title": null,
+            "ecmDocId": "47e5291a-d667-3345-b2f5-b92db98a724a"
+          },
+          "avbDocuments": [
+            {
+              "pubDocId": 7037,
+              "title": null
+            }
+          ],
+          "recommendation": false
+        },
+        {
+          "uuid": "53118a83-1c4e-4cf8-a9fa-86c9d533ea4d",
+          "iconId": 21,
+          "businessCd": "72010",
+          "productName": "Reiseversicherung INTERTOURS",
+          "description": null,
+          "descriptionOfferGroup": null,
+          "contractFrom": "2021-03-11T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-03-11T23:00:00.000Z",
+          "offerTo": "2021-06-10T22:00:00.000Z",
+          "premium": {
+            "amount": 56.7,
+            "currencyCode": "CHF"
+          },
+          "state": {
+            "key": "0",
+            "value": "Offen"
+          },
+          "offerDocument": {
+            "title": null,
+            "ecmDocId": "816d2fd2-6a20-5447-b86c-426dc9ed6dbc"
+          },
+          "avbDocuments": [
+            {
+              "pubDocId": 7037,
+              "title": null
+            }
+          ],
+          "recommendation": false
+        }
+      ]
+    },
+    {
+      "businessCd": "3601",
+      "productName": "Zahlungsschutzversicherung",
+      "description": null,
+      "offers": [
+        {
+          "uuid": "1ae6f757-cf29-4077-9661-0d23e88cdc18",
+          "iconId": 4,
+          "businessCd": "3601",
+          "productName": "Zahlungsschutzversicherung",
+          "description": null,
+          "descriptionOfferGroup": null,
+          "contractFrom": "2021-03-11T23:00:00.000Z",
+          "contractTo": null,
+          "offerFrom": "2021-03-11T23:00:00.000Z",
+          "offerTo": "2021-06-10T22:00:00.000Z",
+          "premium": {
+            "amount": 440.35,
+            "currencyCode": "CHF"
+          },
+          "state": {
+            "key": "2",
+            "value": "Abgeschlossen"
+          },
+          "offerDocument": {
+            "title": null,
+            "ecmDocId": "fafeec27-e488-ad42-ac3e-dad88e83dddf"
+          },
+          "avbDocuments": [
+            {
+              "pubDocId": 7249,
+              "title": null
+            }
+          ],
+          "recommendation": false
+        }
+      ]
+    }
+  ],
+  "advisor": {
+    "advisorId": "C323012",
+    "firstName": "Nico",
+    "lastName": "Eigenmann",
+    "mail": "nico.eigenmann@axa.ch",
+    "phoneNumber": "+41 58 215 25 37",
+    "mobileNumber": "+41795956587",
+    "street": "General-Guisan-Strasse 42",
+    "postBox": "G4.153",
+    "postalCode": "8400",
+    "city": "Winterthur",
+    "countryCode": {
+      "key": "CH",
+      "value": "Schweiz"
+    },
+    "genderCode": {
+      "key": "m",
+      "value": "männlich"
+    },
+    "advisorInformationDocument": {
+      "label": "Beraterinformation",
+      "url": "https://www.axa.ch/doc/ace2t"
+    }
+  }
+}

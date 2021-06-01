@@ -1,0 +1,44 @@
+@import '../../styles/colors';
+@import '../../styles/typo';
+
+.Alert {
+  width: 100%;
+  padding: 18px 27px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.Alert__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 22px;
+  fill: $color-prim-white;
+  color: $color-prim-white;
+}
+
+.Alert__message {
+  color: $color-prim-white;
+}
+
+.Alert--error {
+  background-color: $color-validation-error;
+}
+
+.Alert--info {
+  background-color: $color-ocean-blue;
+}
+
+.Alert--success {
+  background-color: $color-viridian-green;
+}
+
+.Alert--danger {
+  background-color: $color-burnt-sienna;
+
+  .Alert__icon > svg {
+    width: 36px;
+    height: 36px;
+  }
+}

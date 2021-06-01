@@ -1,0 +1,22 @@
+@import '../../styles/typo';
+
+// see \node_modules\@axa-ch\materials\styles\typography.scss
+
+$font-styles: bold, semibold, italic;
+$text-variants: t1, t2, t3, t4;
+
+.Typo {
+  @include typography();
+}
+
+@each $text-variant in $text-variants {
+  .Typo-#{$text-variant} {
+    @include text($text-variant);
+  }
+
+  @each $font-style in $font-styles {
+    .Typo-#{$text-variant}-#{$font-style} {
+      @include text($text-variant, $font-style);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@import '../../styles/colors';
+
+.Page {
+  background-color: $color-alabaster;
+  // disable collapsing margins https://www.smashingmagazine.com/2019/07/margins-in-css/
+  display: flex;
+  flex-direction: column;
+}

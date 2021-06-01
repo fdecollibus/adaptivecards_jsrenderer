@@ -1,0 +1,39 @@
+.TransitionDown {
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+
+  &--max-height-200 {
+    max-height: 200px;
+    transition: all 700ms ease;
+  }
+
+  &--max-height-400 {
+    max-height: 400px;
+    transition: all 700ms ease;
+  }
+
+  &--max-height-600 {
+    max-height: 600px;
+    transition: all 700ms ease;
+  }
+
+  &--max-height-800 {
+    max-height: 800px;
+    transition: all 800ms ease;
+  }
+
+  &--max-height-1000 {
+    max-height: 1000px;
+    transition: all 1000ms ease;
+  }
+
+  &--enter {
+    opacity: 0.5;
+    max-height: 0;
+  }
+
+  &--enter-active {
+    opacity: 1;
+  }
+}

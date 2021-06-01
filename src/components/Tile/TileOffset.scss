@@ -1,0 +1,43 @@
+@import '../../styles/respond';
+
+$bottomSpacing: 50px;
+
+@mixin resetOffset() {
+  & > .u-offset-1 {
+    margin-left: 0;
+  }
+  & > .u-col-10 {
+    max-width: inherit;
+    flex: 1;
+  }
+}
+
+.TileOffset {
+  //reset the offset on desktop
+  &.TileOffset--mobileOnly {
+    @include desktop() {
+      @include resetOffset;
+    }
+  }
+
+  //reset the offset on mobile
+  &.TileOffset--desktopOnly {
+    @include mobile() {
+      @include resetOffset;
+    }
+  }
+
+  &.TileOffset--bottomSpacing {
+    padding-bottom: $bottomSpacing;
+  }
+
+  &.TileOffset--bottomSpacingDesktopOnly {
+    @include desktop() {
+      padding-bottom: $bottomSpacing;
+    }
+  }
+
+  .TileOffset__text {
+    margin-bottom: 8px;
+  }
+}
