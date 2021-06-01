@@ -59,18 +59,18 @@ export default class PodAdaptiveCardsTestings {
     //     };
 
     // Parse the card payload
-    adaptiveCard.parse({
-      type: "AdaptiveCard",
-      version: "1.0",
-      body: [
-        {
-          type: "PLDropdown",
-          title: "This is a progress bar",
-          value: 100,
-        },
-      ],
-    });
-    // adaptiveCard.parse(fetchedCardJSON);
+    // adaptiveCard.parse({
+    //   type: "AdaptiveCard",
+    //   version: "1.0",
+    //   body: [
+    //     {
+    //       type: "PLDropdown",
+    //       title: "This is a progress bar",
+    //       value: 100,
+    //     },
+    //   ],
+    // });
+    adaptiveCard.parse(fetchedCardJSON);
 
     // Render the card to an HTML element:
     var renderedCard = adaptiveCard.render();
