@@ -1,21 +1,22 @@
 module.exports = {
   presets: [
     [
-      '@babel/preset-env',
+      "@babel/preset-env",
       {
         modules: false,
         targets: {
-          browsers: ['last 2 versions', 'safari >= 8', 'not ie <= 10'],
+          browsers: ["last 2 versions", "safari >= 8", "not ie <= 10"],
         },
       },
     ],
-    '@babel/preset-react',
-    '@babel/preset-typescript',
+    "@babel/preset-react",
+    "@babel/preset-typescript",
   ],
   plugins: [
-    '@babel/plugin-proposal-class-properties',
+    ["@babel/plugin-proposal-decorators", { legacy: true }],
+    "@babel/plugin-proposal-class-properties",
     [
-      '@babel/plugin-transform-runtime',
+      "@babel/plugin-transform-runtime",
       {
         absoluteRuntime: false,
         corejs: false,
