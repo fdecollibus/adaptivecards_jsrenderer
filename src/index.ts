@@ -49,7 +49,6 @@ export default class PodAdaptiveCardsTestings {
         ).json();
         _self.elem.appendChild(_self.createSeparator());
         _self.renderCard(fetchedCardJSON, _self);
-        console.log(fetchedCardJSON);
       }
     };
   };
