@@ -1,8 +1,6 @@
 import * as AC from "adaptivecards";
-// import { SerializableObjectType } from "adaptivecards";
-// import { SerializableObjectCollectionProperty } from "adaptivecards";
 
-export class PLDropdown extends AC.CardElement {
+export class PLDropdown extends AC.Input {
   static readonly JsonTypeName = "PLDropdown";
 
   //#region Schema
@@ -105,7 +103,6 @@ export class PLDropdown extends AC.CardElement {
     // progressBarElement.append(this._leftBarElement, this._rightBarElement);
 
     // element.append(this._titleElement, progressBarElement);
-    console.log(this);
     const dropdown = document.createElement("axa-dropdown");
     dropdown.setAttribute("defaulttitle", this.placeholder || "");
     dropdown.setAttribute("label", this.label || "");
@@ -113,10 +110,10 @@ export class PLDropdown extends AC.CardElement {
     dropdown.addEventListener("change", (e) => {
       // const value = (e.target as any).value;
       // debugger;
-      // this.setValue("value", "hey");
-      console.log(this.value);
+      this.setValue(PLDropdown.valueProperty, (e.target as any).value);
+      // console.log(this.value);
     });
-    console.log(this.choices);
+    // console.log(this.choices);
     element.appendChild(dropdown);
 
     return element;
@@ -147,11 +144,33 @@ export class PLDropdown extends AC.CardElement {
     return true;
   }
 
-  public get value(): any {
-    return "wold";
+  // public get value(): any {
+  //   console.log("i was here");
+  //   return "wold";
+  // }
+
+  public isValid(): boolean {
+    return true;
   }
 
-  public set value(v: any) {
-    this.value = v;
+  // public set value(v: any) {
+  //   this.value = v;
+  // }
+
+  static readonly valueProperty = new AC.StringProperty(
+    AC.Versions.v1_0,
+    "value"
+  );
+  @AC.property(PLDropdown.valueProperty)
+  public get value(): string | undefined {
+    // return "hellooooooo";
+    return this.getValue(PLDropdown.valueProperty);
+  }
+  public set value(value: string | undefined) {
+    if (this.value !== value) {
+      this.setValue(PLDropdown.valueProperty, value);
+
+      this.updateLayout();
+    }
   }
 }

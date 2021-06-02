@@ -18,19 +18,19 @@ export default class PodAdaptiveCardsTestings {
 
     this.elem.innerHTML = "<h1>Adaptive Cards Playground</h1>";
 
-    let fetchedCardJSON;
-    try {
-      fetchedCardJSON = await (
-        await fetch(
-          "https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow"
-        )
-      ).json();
-    } catch (e) {
-      console.error(
-        "Fetch card failed! CORS issue? Parsing issue? Connectivity issue?",
-        e
-      );
-    }
+    // let fetchedCardJSON;
+    // try {
+    //   fetchedCardJSON = await (
+    //     await fetch(
+    //       "https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow"
+    //     )
+    //   ).json();
+    // } catch (e) {
+    //   console.error(
+    //     "Fetch card failed! CORS issue? Parsing issue? Connectivity issue?",
+    //     e
+    //   );
+    // }
 
     // Create an AdaptiveCard instance
     var adaptiveCard = new AdaptiveCards.AdaptiveCard();
@@ -51,7 +51,7 @@ export default class PodAdaptiveCardsTestings {
       }
     };
 
-    console.log(fetchedCardJSON);
+    // console.log(fetchedCardJSON);
 
     // For markdown support you need a third-party library
     // E.g., to use markdown-it, include in your HTML page:
@@ -98,7 +98,7 @@ export default class PodAdaptiveCardsTestings {
       },
       this.serializationContext
     );
-    adaptiveCard.parse(fetchedCardJSON);
+    // adaptiveCard.parse(fetchedCardJSON);
     adaptiveCard.parse(
       {
         type: "AdaptiveCard",
@@ -119,24 +119,21 @@ export default class PodAdaptiveCardsTestings {
                 type: "Container",
                 items: [
                   {
-                    type: "Input.ChoiceSet",
-                    choices: [
+                    id: "schaden_entstehung",
+                    type: "PLDropdown",
+                    placeholder: "Bitte wählen ...",
+                    label: "This is a progress bar",
+                    choices: JSON.stringify([
                       {
-                        title: "Diebstahl, Einbruch und Verlust",
+                        name: "Diebstahl, Einbruch und Verlust",
                         value: "Choice 1 - was muss ich da eingeben?",
                       },
                       {
-                        title: "Beschädigung und Zerstörung",
+                        name: "Beschädigung und Zerstörung",
                         value: "Choice 2",
                       },
-                      {
-                        title: "Sonstiges",
-                        value: "Choice 3",
-                      },
-                    ],
-                    placeholder: "Bitte wählen ...",
-                    label: "Wie ist der Schaden entstanden?",
-                    id: "schaden_entstehung",
+                      { name: "Sonstiges", value: "Choice 3" },
+                    ]),
                   },
                   {
                     type: "Input.Date",
