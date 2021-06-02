@@ -10,7 +10,6 @@ export default class PodAdaptiveCardsTestings {
 
   constructor(elem: HTMLElement) {
     this.elem = elem;
-
     this.init();
   }
 
@@ -48,7 +47,6 @@ export default class PodAdaptiveCardsTestings {
             otherParams
           )
         ).json();
-        debugger;
         _self.elem.appendChild(_self.createSeparator());
         _self.renderCard(fetchedCardJSON, _self);
         console.log(fetchedCardJSON);
