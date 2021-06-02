@@ -3,10 +3,8 @@ import * as AC from "adaptivecards";
 export class PLDropdown extends AC.Input {
   static readonly JsonTypeName = "PLDropdown";
 
-  //#region Schema
-
   static readonly choicesProperty = new AC.StringProperty(
-    AC.Versions.v1_0,
+    AC.Versions.v1_3,
     "choices"
   );
   @AC.property(PLDropdown.choicesProperty)
@@ -16,13 +14,12 @@ export class PLDropdown extends AC.Input {
   set choices(value: string | undefined) {
     if (this.choices !== value) {
       this.setValue(PLDropdown.choicesProperty, value);
-
       this.updateLayout();
     }
   }
 
   static readonly placeholderProperty = new AC.StringProperty(
-    AC.Versions.v1_0,
+    AC.Versions.v1_3,
     "placeholder",
     true
   );
@@ -33,89 +30,21 @@ export class PLDropdown extends AC.Input {
   set placeholder(value: string | undefined) {
     if (this.placeholder !== value) {
       this.setValue(PLDropdown.placeholderProperty, value);
-
       this.updateLayout();
     }
   }
-
-  static readonly labelProperty = new AC.StringProperty(
-    AC.Versions.v1_0,
-    "label"
-  );
-  @AC.property(PLDropdown.labelProperty)
-  get label(): string {
-    return this.getValue(PLDropdown.labelProperty);
-  }
-  set label(label: string) {
-    if (this.label !== label) {
-      this.setValue(PLDropdown.labelProperty, label);
-
-      this.updateLayout();
-    }
-    // this.label = label;
-    // let adjustedValue = label;
-
-    // if (adjustedValue < 0) {
-    //   adjustedValue = 0;
-    // } else if (adjustedValue > 100) {
-    //   adjustedValue = 100;
-    // }
-
-    // if (this.label !== adjustedValue) {
-    //   this.setValue(PLDropdown.labelProperty, adjustedValue);
-
-    //   this.updateLayout();
-    // }
-  }
-
-  //#endregion
-
-  // private _titleElement: any;
-  // private _leftBarElement: HTMLElement;
-  // private _rightBarElement: HTMLElement;
 
   protected internalRender(): HTMLElement {
     let element = document.createElement("div");
 
-    // let textBlock = new AC.TextBlock();
-    // textBlock.setParent(this);
-    // textBlock.text = this.title;
-    // textBlock.wrap = true;
-
-    // this._titleElement = textBlock.render();
-    // if (this._titleElement) this._titleElement.style.marginBottom = "6px";
-
-    // let progressBarElement = document.createElement("div");
-    // progressBarElement.style.display = "flex";
-
-    // this._leftBarElement = document.createElement("div");
-    // this._leftBarElement.style.height = "6px";
-    // this._leftBarElement.style.backgroundColor = AC.stringToCssColor(
-    //   this.hostConfig.containerStyles.emphasis.foregroundColors.accent.default
-    // ) as string;
-
-    // this._rightBarElement = document.createElement("div");
-    // this._rightBarElement.style.height = "6px";
-    // this._rightBarElement.style.backgroundColor = AC.stringToCssColor(
-    //   this.hostConfig.containerStyles.emphasis.backgroundColor
-    // ) as string;
-
-    // progressBarElement.append(this._leftBarElement, this._rightBarElement);
-
-    // element.append(this._titleElement, progressBarElement);
     const dropdown = document.createElement("axa-dropdown");
     dropdown.setAttribute("defaulttitle", this.placeholder || "");
-    dropdown.setAttribute("label", this.label || "");
     dropdown.setAttribute("items", this.choices || "");
     dropdown.addEventListener("change", (e) => {
-      // const value = (e.target as any).value;
-      // debugger;
       this.setValue(PLDropdown.valueProperty, (e.target as any).value);
-      // console.log(this.value);
     });
-    // console.log(this.choices);
-    element.appendChild(dropdown);
 
+    element.appendChild(dropdown);
     return element;
   }
 
@@ -125,51 +54,23 @@ export class PLDropdown extends AC.Input {
 
   updateLayout(processChildren: boolean = true) {
     super.updateLayout(processChildren);
-
-    if (this.renderedElement) {
-      if (this.placeholder) {
-        // if (this._titleElement) this._titleElement.style.display = "none";
-      }
-      // else {
-      //   if (this._titleElement)
-      //     this._titleElement.style.removeProperty("display");
-      // }
-
-      // this._leftBarElement.style.flex = "1 1 " + this.value + "%";
-      // this._rightBarElement.style.flex = "1 1 " + (100 - this.value) + "%";
-    }
   }
 
   public isSet(): boolean {
     return true;
   }
 
-  // public get value(): any {
-  //   console.log("i was here");
-  //   return "wold";
-  // }
-
-  public isValid(): boolean {
-    return true;
-  }
-
-  // public set value(v: any) {
-  //   this.value = v;
-  // }
-
   static readonly valueProperty = new AC.StringProperty(
-    AC.Versions.v1_0,
+    AC.Versions.v1_3,
     "value"
   );
   @AC.property(PLDropdown.valueProperty)
   public get value(): string | undefined {
-    // return "hellooooooo";
     return this.getValue(PLDropdown.valueProperty);
   }
   public set value(value: string | undefined) {
     if (this.value !== value) {
       this.setValue(PLDropdown.valueProperty, value);
-
       this.updateLayout();
     }
   }
