@@ -5,6 +5,7 @@ import { PLDropdown } from "./pl-dropdown";
 
 export default class PodAdaptiveCardsTestings {
   private elem: HTMLElement;
+  private serializationContext: AdaptiveCards.SerializationContext;
 
   constructor(elem: HTMLElement) {
     this.elem = elem;
@@ -44,8 +45,10 @@ export default class PodAdaptiveCardsTestings {
     // Set the adaptive card's event handlers. onExecuteAction is invoked
     // whenever an action is clicked in the card
     adaptiveCard.onExecuteAction = function (action) {
-      console.log(action);
-      debugger;
+      if (action instanceof AdaptiveCards.SubmitAction) {
+        console.log(action.data);
+        debugger;
+      }
     };
 
     console.log(fetchedCardJSON);
@@ -60,99 +63,117 @@ export default class PodAdaptiveCardsTestings {
     //     };
 
     // Parse the card payload
-    adaptiveCard.parse({
-      type: "AdaptiveCard",
-      version: "1.0",
-      body: [
-        {
-          id: "schaden_entstehung",
-          type: "PLDropdown",
-          placeholder: "Bitte wählen ...",
-          label: "This is a progress bar",
-          choices: JSON.stringify([
-            {
-              name: "Diebstahl, Einbruch und Verlust",
-              value: "Choice 1 - was muss ich da eingeben?",
-            },
-            { name: "Beschädigung und Zerstörung", value: "Choice 2" },
-            { name: "Sonstiges", value: "Choice 3" },
-          ]),
-        },
-      ],
-    });
-    // adaptiveCard.parse(fetchedCardJSON);
-    adaptiveCard.parse({
-      type: "AdaptiveCard",
-      $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
-      version: "1.3",
-      body: [
-        {
-          type: "Container",
-          items: [
-            {
-              type: "TextBlock",
-              text: "Schadenmeldung",
-              wrap: true,
-              size: "Large",
-              weight: "Bolder",
-            },
-            {
-              type: "Container",
-              items: [
-                {
-                  type: "Input.ChoiceSet",
-                  choices: [
-                    {
-                      title: "Diebstahl, Einbruch und Verlust",
-                      value: "Choice 1 - was muss ich da eingeben?",
-                    },
-                    {
-                      title: "Beschädigung und Zerstörung",
-                      value: "Choice 2",
-                    },
-                    {
-                      title: "Sonstiges",
-                      value: "Choice 3",
-                    },
-                  ],
-                  placeholder: "Bitte wählen ...",
-                  label: "Wie ist der Schaden entstanden?",
-                  id: "schaden_entstehung",
-                },
-                {
-                  type: "Input.Date",
-                  label: "Wann ist der Schaden entstanden?",
-                  value: "[today]",
-                  isRequired: true,
-                  errorMessage:
-                    "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
-                  id: "schadendatum",
-                },
-                {
-                  type: "TextBlock",
-                  text: "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
-                  wrap: true,
-                  size: "Small",
-                  id: "infotext_schadendatum",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "ActionSet",
-          actions: [
-            {
-              type: "Action.Submit",
-              id: "claimsStart",
-              title: "Absenden",
-              style: "positive",
-              url: "https://adaptivecardsworkflow.azurewebsites.net/api/claimsworkflow",
-            },
-          ],
-        },
-      ],
-    });
+    adaptiveCard.parse(
+      {
+        type: "AdaptiveCard",
+        version: "1.0",
+        body: [
+          {
+            id: "schaden_entstehung",
+            type: "PLDropdown",
+            placeholder: "Bitte wählen ...",
+            label: "This is a progress bar",
+            choices: JSON.stringify([
+              {
+                name: "Diebstahl, Einbruch und Verlust",
+                value: "Choice 1 - was muss ich da eingeben?",
+              },
+              { name: "Beschädigung und Zerstörung", value: "Choice 2" },
+              { name: "Sonstiges", value: "Choice 3" },
+            ]),
+          },
+          {
+            type: "ActionSet",
+            actions: [
+              {
+                type: "Action.Submit",
+                id: "claimsStart",
+                title: "Absenden",
+                style: "positive",
+                url: "https://adaptivecardsworkflow.azurewebsites.net/api/claimsworkflow",
+              },
+            ],
+          },
+        ],
+      },
+      this.serializationContext
+    );
+    adaptiveCard.parse(fetchedCardJSON);
+    adaptiveCard.parse(
+      {
+        type: "AdaptiveCard",
+        $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
+        version: "1.3",
+        body: [
+          {
+            type: "Container",
+            items: [
+              {
+                type: "TextBlock",
+                text: "Schadenmeldung",
+                wrap: true,
+                size: "Large",
+                weight: "Bolder",
+              },
+              {
+                type: "Container",
+                items: [
+                  {
+                    type: "Input.ChoiceSet",
+                    choices: [
+                      {
+                        title: "Diebstahl, Einbruch und Verlust",
+                        value: "Choice 1 - was muss ich da eingeben?",
+                      },
+                      {
+                        title: "Beschädigung und Zerstörung",
+                        value: "Choice 2",
+                      },
+                      {
+                        title: "Sonstiges",
+                        value: "Choice 3",
+                      },
+                    ],
+                    placeholder: "Bitte wählen ...",
+                    label: "Wie ist der Schaden entstanden?",
+                    id: "schaden_entstehung",
+                  },
+                  {
+                    type: "Input.Date",
+                    label: "Wann ist der Schaden entstanden?",
+                    value: "[today]",
+                    isRequired: true,
+                    errorMessage:
+                      "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
+                    id: "schadendatum",
+                  },
+                  {
+                    type: "TextBlock",
+                    text: "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
+                    wrap: true,
+                    size: "Small",
+                    id: "infotext_schadendatum",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: "ActionSet",
+            actions: [
+              {
+                type: "Action.Submit",
+                id: "claimsStart",
+                title: "Absenden",
+                style: "positive",
+                url: "https://adaptivecardsworkflow.azurewebsites.net/api/claimsworkflow",
+              },
+            ],
+          },
+        ],
+      },
+      this.serializationContext
+    );
 
     // Render the card to an HTML element:
     var renderedCard = adaptiveCard.render();
@@ -162,13 +183,14 @@ export default class PodAdaptiveCardsTestings {
   }
 
   registerCustomComponents(): void {
-    AdaptiveCards.GlobalRegistry.elements.register(
-      ProgressBar.JsonTypeName,
-      ProgressBar
-    );
-    AdaptiveCards.GlobalRegistry.elements.register(
-      PLDropdown.JsonTypeName,
-      PLDropdown
-    );
+    let elementRegistry =
+      new AdaptiveCards.CardObjectRegistry<AdaptiveCards.CardElement>();
+    AdaptiveCards.GlobalRegistry.populateWithDefaultElements(elementRegistry);
+
+    elementRegistry.register(ProgressBar.JsonTypeName, ProgressBar);
+    elementRegistry.register(PLDropdown.JsonTypeName, PLDropdown);
+
+    this.serializationContext = new AdaptiveCards.SerializationContext();
+    this.serializationContext.setElementRegistry(elementRegistry);
   }
 }

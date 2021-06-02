@@ -110,6 +110,12 @@ export class PLDropdown extends AC.CardElement {
     dropdown.setAttribute("defaulttitle", this.placeholder || "");
     dropdown.setAttribute("label", this.label || "");
     dropdown.setAttribute("items", this.choices || "");
+    dropdown.addEventListener("change", (e) => {
+      // const value = (e.target as any).value;
+      // debugger;
+      // this.setValue("value", "hey");
+      console.log(this.value);
+    });
     console.log(this.choices);
     element.appendChild(dropdown);
 
@@ -135,5 +141,17 @@ export class PLDropdown extends AC.CardElement {
       // this._leftBarElement.style.flex = "1 1 " + this.value + "%";
       // this._rightBarElement.style.flex = "1 1 " + (100 - this.value) + "%";
     }
+  }
+
+  public isSet(): boolean {
+    return true;
+  }
+
+  public get value(): any {
+    return "wold";
+  }
+
+  public set value(v: any) {
+    this.value = v;
   }
 }
