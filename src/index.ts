@@ -14,7 +14,7 @@ export default class PodAdaptiveCardsTestings {
     this.init();
   }
 
-  renderCard = (cardBody: object) => {
+  renderCard = (cardBody: object, _self: any) => {
     var adaptiveCard = new AdaptiveCards.AdaptiveCard();
     adaptiveCard.hostConfig = new AdaptiveCards.HostConfig({
       fontFamily: "Segoe UI, Helvetica Neue, sans-serif",
@@ -22,8 +22,6 @@ export default class PodAdaptiveCardsTestings {
     adaptiveCard.parse(cardBody, this.serializationContext);
     var renderedCard = adaptiveCard.render();
     this.elem.appendChild(renderedCard as Node);
-
-    const _self = this;
 
     adaptiveCard.onExecuteAction = async function (action) {
       if (action instanceof AdaptiveCards.SubmitAction) {
@@ -45,7 +43,7 @@ export default class PodAdaptiveCardsTestings {
           )
         ).json();
         debugger;
-        _self.renderCard(fetchedCardJSON);
+        _self.renderCard(fetchedCardJSON, _self);
         console.log(fetchedCardJSON);
       }
     };
@@ -63,7 +61,7 @@ export default class PodAdaptiveCardsTestings {
           "https://adaptivecardsworkflow.azurewebsites.net/api/ClaimsWorkflow"
         )
       ).json();
-      this.renderCard(fetchedCardJSON);
+      this.renderCard(fetchedCardJSON, this);
     } catch (e) {
       console.error(
         "Fetch card failed! CORS issue? Parsing issue? Connectivity issue?",
