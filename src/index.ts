@@ -28,7 +28,6 @@ export default class PodAdaptiveCardsTestings {
     adaptiveCard.parse(cardBody, this.serializationContext);
     var renderedCard = adaptiveCard.render();
     this.elem.appendChild(renderedCard as Node);
-    this.elem.appendChild(this.createSeparator());
 
     adaptiveCard.onExecuteAction = async function (action) {
       if (action instanceof AdaptiveCards.SubmitAction) {
@@ -50,6 +49,7 @@ export default class PodAdaptiveCardsTestings {
           )
         ).json();
         debugger;
+        _self.elem.appendChild(_self.createSeparator());
         _self.renderCard(fetchedCardJSON, _self);
         console.log(fetchedCardJSON);
       }
