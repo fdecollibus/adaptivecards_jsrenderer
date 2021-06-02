@@ -2,6 +2,8 @@ import * as AdaptiveCards from "adaptivecards";
 
 import { ProgressBar } from "./CustomCard";
 import { PLDropdown } from "./pl-dropdown";
+import { PLButton } from "./pl-button";
+
 
 export default class PodAdaptiveCardsTestings {
   private elem: HTMLElement;
@@ -94,6 +96,10 @@ export default class PodAdaptiveCardsTestings {
               },
             ],
           },
+          {
+            type: "PLButton",
+            label: "Test ",
+          },
         ],
       },
       this.serializationContext
@@ -151,6 +157,10 @@ export default class PodAdaptiveCardsTestings {
                     size: "Small",
                     id: "infotext_schadendatum",
                   },
+                  {
+                    type: "PLButton",
+                    label: "Test ",
+                  },
                 ],
               },
             ],
@@ -186,6 +196,8 @@ export default class PodAdaptiveCardsTestings {
 
     elementRegistry.register(ProgressBar.JsonTypeName, ProgressBar);
     elementRegistry.register(PLDropdown.JsonTypeName, PLDropdown);
+    elementRegistry.register(PLButton.JsonTypeName, PLButton);
+
 
     this.serializationContext = new AdaptiveCards.SerializationContext();
     this.serializationContext.setElementRegistry(elementRegistry);
