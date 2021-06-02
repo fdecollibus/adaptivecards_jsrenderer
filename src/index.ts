@@ -1,8 +1,6 @@
 import * as AdaptiveCards from "adaptivecards";
 
-import { ProgressBar } from "./CustomCard";
 import { PLDropdown } from "./pl-dropdown";
-import { PLButton } from "./pl-button";
 
 export default class PodAdaptiveCardsTestings {
   private elem: HTMLElement;
@@ -79,9 +77,7 @@ export default class PodAdaptiveCardsTestings {
       new AdaptiveCards.CardObjectRegistry<AdaptiveCards.CardElement>();
     AdaptiveCards.GlobalRegistry.populateWithDefaultElements(elementRegistry);
 
-    elementRegistry.register(ProgressBar.JsonTypeName, ProgressBar);
     elementRegistry.register(PLDropdown.JsonTypeName, PLDropdown);
-    elementRegistry.register(PLButton.JsonTypeName, PLButton);
 
     this.serializationContext = new AdaptiveCards.SerializationContext();
     this.serializationContext.setElementRegistry(elementRegistry);

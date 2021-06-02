@@ -1,7 +1,7 @@
 {
   "homepage": "https://github.com/axa-ch/pod-adaptive-cards-testings#readme",
   "name": "@axa-ch/pod-adaptive-cards-testings",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "lib/index.js",
   "description": "This project was used for a hackaton about adaptive cards.",
   "scripts": {
