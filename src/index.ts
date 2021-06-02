@@ -14,6 +14,12 @@ export default class PodAdaptiveCardsTestings {
     this.init();
   }
 
+  createSeparator = (): HTMLElement => {
+    const sep = document.createElement("hr");
+    sep.classList.add("rounded");
+    return sep;
+  };
+
   renderCard = (cardBody: object, _self: any) => {
     var adaptiveCard = new AdaptiveCards.AdaptiveCard();
     adaptiveCard.hostConfig = new AdaptiveCards.HostConfig({
@@ -22,6 +28,7 @@ export default class PodAdaptiveCardsTestings {
     adaptiveCard.parse(cardBody, this.serializationContext);
     var renderedCard = adaptiveCard.render();
     this.elem.appendChild(renderedCard as Node);
+    this.elem.appendChild(this.createSeparator());
 
     adaptiveCard.onExecuteAction = async function (action) {
       if (action instanceof AdaptiveCards.SubmitAction) {
