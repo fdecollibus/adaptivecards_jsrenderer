@@ -44,7 +44,8 @@ export default class PodAdaptiveCardsTestings {
     // Set the adaptive card's event handlers. onExecuteAction is invoked
     // whenever an action is clicked in the card
     adaptiveCard.onExecuteAction = function (action) {
-      alert("Ow!");
+      console.log(action);
+      debugger;
     };
 
     console.log(fetchedCardJSON);
@@ -80,6 +81,78 @@ export default class PodAdaptiveCardsTestings {
       ],
     });
     // adaptiveCard.parse(fetchedCardJSON);
+    adaptiveCard.parse({
+      type: "AdaptiveCard",
+      $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
+      version: "1.3",
+      body: [
+        {
+          type: "Container",
+          items: [
+            {
+              type: "TextBlock",
+              text: "Schadenmeldung",
+              wrap: true,
+              size: "Large",
+              weight: "Bolder",
+            },
+            {
+              type: "Container",
+              items: [
+                {
+                  type: "Input.ChoiceSet",
+                  choices: [
+                    {
+                      title: "Diebstahl, Einbruch und Verlust",
+                      value: "Choice 1 - was muss ich da eingeben?",
+                    },
+                    {
+                      title: "Beschädigung und Zerstörung",
+                      value: "Choice 2",
+                    },
+                    {
+                      title: "Sonstiges",
+                      value: "Choice 3",
+                    },
+                  ],
+                  placeholder: "Bitte wählen ...",
+                  label: "Wie ist der Schaden entstanden?",
+                  id: "schaden_entstehung",
+                },
+                {
+                  type: "Input.Date",
+                  label: "Wann ist der Schaden entstanden?",
+                  value: "[today]",
+                  isRequired: true,
+                  errorMessage:
+                    "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
+                  id: "schadendatum",
+                },
+                {
+                  type: "TextBlock",
+                  text: "Wenn Sie das genaue Schadendatum nicht wissen, geben Sie eine Schätzung an oder das heutige Datum.",
+                  wrap: true,
+                  size: "Small",
+                  id: "infotext_schadendatum",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "ActionSet",
+          actions: [
+            {
+              type: "Action.Submit",
+              id: "claimsStart",
+              title: "Absenden",
+              style: "positive",
+              url: "https://adaptivecardsworkflow.azurewebsites.net/api/claimsworkflow",
+            },
+          ],
+        },
+      ],
+    });
 
     // Render the card to an HTML element:
     var renderedCard = adaptiveCard.render();
