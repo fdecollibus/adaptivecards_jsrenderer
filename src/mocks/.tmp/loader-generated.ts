@@ -5,10 +5,10 @@ export const router = express.Router();
 
 // here we import all the routes
 // tslint:disable
-import { requestHandler as name162265007311174206 } from '../offers/index';
-router.use('/rest/po/partner/v1/partners/:partnerNumber/offers', name162265007311174206);
-import { requestHandler as name162265007311265357 } from '../properties/index';
-router.use('/rest/pds-document/v1/documents/properties', name162265007311265357);
+import { requestHandler as name162265012179983995 } from '../offers/index';
+router.use('/rest/po/partner/v1/partners/:partnerNumber/offers', name162265012179983995);
+import { requestHandler as name162265012180093804 } from '../properties/index';
+router.use('/rest/pds-document/v1/documents/properties', name162265012180093804);
 
 router.use('/rest/pds-document/v1/documents', (req, res) => {
   res.json(
