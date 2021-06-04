@@ -25,10 +25,6 @@ export class PLDropdown extends AC.ChoiceSetInput {
     return PLDropdown.JsonTypeName;
   }
 
-  updateLayout(processChildren: boolean = true) {
-    super.updateLayout(processChildren);
-  }
-
   public isSet(): boolean {
     return true;
   }

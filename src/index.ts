@@ -1,6 +1,8 @@
 import * as AdaptiveCards from "adaptivecards";
 
 import { PLDropdown } from "./pl-dropdown";
+import { PLInput } from "pl-input";
+import { PLButton } from "pl-button";
 
 export default class PodAdaptiveCardsTestings {
   private elem: HTMLElement;
@@ -28,6 +30,7 @@ export default class PodAdaptiveCardsTestings {
 
     adaptiveCard.onExecuteAction = async function (action) {
       if (action instanceof AdaptiveCards.SubmitAction) {
+        console.log(action.id,action.data)
         let values = {
           id: action.id,
           data: action.data,
@@ -76,10 +79,17 @@ export default class PodAdaptiveCardsTestings {
     let elementRegistry =
       new AdaptiveCards.CardObjectRegistry<AdaptiveCards.CardElement>();
     AdaptiveCards.GlobalRegistry.populateWithDefaultElements(elementRegistry);
+    
+    let actionRegistry =
+      new AdaptiveCards.CardObjectRegistry<AdaptiveCards.Action>();
+    AdaptiveCards.GlobalRegistry.populateWithDefaultActions(actionRegistry);
 
     elementRegistry.register(PLDropdown.JsonTypeName, PLDropdown);
+    elementRegistry.register(PLInput.JsonTypeName, PLInput);
+    actionRegistry.register(PLButton.JsonTypeName, PLButton);
 
     this.serializationContext = new AdaptiveCards.SerializationContext();
     this.serializationContext.setElementRegistry(elementRegistry);
+    this.serializationContext.setActionRegistry(actionRegistry);
   }
 }
