@@ -22,7 +22,7 @@ export class PLText extends AC.TextBlock {
       default:
         break;
     }
-    const axatext = document.createTextNode(this.text)
+    const axatext = document.createTextNode(this.text || '');
     text.appendChild(axatext);
     element.appendChild(text);
     return element;
