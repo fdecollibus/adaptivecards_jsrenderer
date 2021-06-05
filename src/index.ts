@@ -3,6 +3,8 @@ import * as AdaptiveCards from "adaptivecards";
 import { PLDropdown } from "./pl-dropdown";
 import { PLInput } from "pl-input";
 import { PLButton } from "pl-button";
+import { PLText } from "pl-text";
+
 
 export default class PodAdaptiveCardsTestings {
   private elem: HTMLElement;
@@ -86,6 +88,8 @@ export default class PodAdaptiveCardsTestings {
 
     elementRegistry.register(PLDropdown.JsonTypeName, PLDropdown);
     elementRegistry.register(PLInput.JsonTypeName, PLInput);
+    elementRegistry.register(PLText.JsonTypeName, PLText);
+
     actionRegistry.register(PLButton.JsonTypeName, PLButton);
 
     this.serializationContext = new AdaptiveCards.SerializationContext();
