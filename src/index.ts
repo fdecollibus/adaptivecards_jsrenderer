@@ -2,8 +2,9 @@ import * as AdaptiveCards from "adaptivecards";
 
 import { PLDropdown } from "./pl-dropdown";
 import { PLInput } from "pl-input";
-import { PLButton } from "pl-button";
+//import { PLButton } from "pl-button";
 import { PLText } from "pl-text";
+import { PLDateInput } from "pl-datepicker";
 
 
 export default class PodAdaptiveCardsTestings {
@@ -25,6 +26,11 @@ export default class PodAdaptiveCardsTestings {
     var adaptiveCard = new AdaptiveCards.AdaptiveCard();
     adaptiveCard.hostConfig = new AdaptiveCards.HostConfig({
       fontFamily: "Segoe UI, Helvetica Neue, sans-serif",
+      
+      
+
+
+      
     });
     adaptiveCard.parse(cardBody, this.serializationContext);
     var renderedCard = adaptiveCard.render();
@@ -89,8 +95,9 @@ export default class PodAdaptiveCardsTestings {
     elementRegistry.register(PLDropdown.JsonTypeName, PLDropdown);
     elementRegistry.register(PLInput.JsonTypeName, PLInput);
     elementRegistry.register(PLText.JsonTypeName, PLText);
-
-    actionRegistry.register(PLButton.JsonTypeName, PLButton);
+    elementRegistry.register(PLDateInput.JsonTypeName, PLDateInput);
+    //elementRegistry.register(PLButton.JsonTypeName, PLButton);
+    //actionRegistry.register(PLButton.JsonTypeName, PLButton);
 
     this.serializationContext = new AdaptiveCards.SerializationContext();
     this.serializationContext.setElementRegistry(elementRegistry);
