@@ -11,12 +11,17 @@ export class PLDateInput extends AC.DateInput {
     //const text = document.createElement('axa-text');
     //const axatext = document.createTextNode(this.label || '');
     const datepicker = document.createElement("axa-datepicker");
+    const today = new Date();
+    this.setValue(PLDateInput.valueProperty, today.toLocaleDateString());
     datepicker.setAttribute('label', this.label || '');
     datepicker.setAttribute('inputfield', "true");
     datepicker.setAttribute('errorMessage', this.errorMessage || '');
     datepicker.setAttribute('name', this.id || '');
     datepicker.addEventListener("change", (e) => {
       this.setValue(PLDateInput.valueProperty, (e.target as any).value);
+      console.log("Ora vi faccio vedere Date Input CHANGE");
+      console.log(this.getValue(PLDateInput.valueProperty));
+
     });
     element.appendChild(datepicker);
     return element;
@@ -34,6 +39,7 @@ export class PLDateInput extends AC.DateInput {
   // super.internalValidateProperties(context);
   // };
 
+  //static readonly valueProperty = new AC.StringProperty(
   static readonly valueProperty = new AC.StringProperty(
     AC.Versions.v1_3,
     "value"
